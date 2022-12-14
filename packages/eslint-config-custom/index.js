@@ -5,7 +5,6 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   extends: [
     "eslint:recommended",
-    "next",
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "turbo",
