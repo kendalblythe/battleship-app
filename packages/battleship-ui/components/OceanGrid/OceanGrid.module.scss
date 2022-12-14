@@ -1,0 +1,53 @@
+@import '../../styles/variables.scss';
+
+.oceanGrid {
+  display: inline-block;
+  position: relative;
+}
+
+.oceanGrid > .table {
+  border: 1px solid $table-border-color;
+}
+
+.oceanGrid > .table > .tbody > .tr > div {
+  border: 1px solid $table-border-color;
+}
+
+.oceanGrid.small > .table > .tbody > .tr > div {
+  width: 2rem;
+  height: 2rem;
+  min-width: 2rem;
+  min-height: 2rem;
+  max-width: 2rem;
+  max-height: 2rem;
+}
+
+.oceanGrid.medium > .table > .tbody > .tr > div {
+  width: 2.5rem;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  max-width: 2.5rem;
+  max-height: 2.5rem;
+}
+
+.oceanGrid.large > .table > .tbody > .tr > div {
+  width: 3rem;
+  height: 3rem;
+  min-width: 3rem;
+  min-height: 3rem;
+  max-width: 3rem;
+  max-height: 3rem;
+}
+
+.table {
+  display: table;
+}
+
+.tbody {
+  display: table-header-group;
+}
+
+.tr {
+  display: table-row;
+}

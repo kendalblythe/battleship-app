@@ -1,0 +1,49 @@
+// reusable color variables
+
+$white: #fff;
+$lightest_gray: #eee;
+$lighter_gray: #ccc;
+$light_gray: #aaa;
+$gray: #888;
+$dark_gray: #666;
+$darker_gray: #444;
+$darkest_gray: #222;
+$red: #f00;
+$black: #000;
+
+// reusable variables
+
+$primary-color: #024e85;
+$border-color: #dfdfdf;
+$outline-color: #96b7ef;
+
+// component variables
+
+$page-background-color: $white;
+$page-border-color: $border-color;
+$page-heading-color: $primary-color;
+
+$button-background-color: $white;
+$button-background-color-hover: $lightest_gray;
+$button-border-color: $border-color;
+$button-outline-color: $outline-color;
+
+$primary-button-background-color: $primary-color;
+$primary-button-background-color-hover: $dark_gray;
+$primary-button-border-color: $primary-color;
+$primary-button-border-color-hover: $primary-button-background-color-hover;
+$primary-button-color: $white;
+
+$select-border-color: $border-color;
+$select-outline-color: $outline-color;
+
+$bombed-hit-color: $red;
+$bombed-miss-color: $gray;
+
+$table-border-color: $border-color;
+$table-header-cell-color: $primary-color;
+$table-header-cell-background-color: $button-background-color-hover;
+$table-active-cell-background-color: $lightest_gray;
+
+$ship-background-color: rgba($primary-color, 0.25);
+$ship-border-color: $primary-color;

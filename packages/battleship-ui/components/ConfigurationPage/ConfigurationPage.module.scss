@@ -1,0 +1,44 @@
+@import '../../styles/variables.scss';
+
+.configurationPage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  background-color: $page-background-color;
+}
+
+.configurationPage > header {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding-block-end: 0.75rem;
+  margin-block-end: 1rem;
+  border-block-end: 1px solid $page-border-color;
+}
+
+.configurationPage > header > * {
+  margin-inline-start: 0.5rem;
+}
+
+.configurationPage > header > :last-child {
+  margin-inline-end: 0.5rem;
+}
+
+.configurationPage > main {
+  display: flex;
+  flex-grow: 1;
+  overflow: auto;
+  margin: 0 0.5rem;
+}
+
+@media screen and (max-width: 30rem) {
+  .configurationPage,
+  .configurationPage > header {
+    width: fit-content;
+  }
+}
+
+.configurationPage > main > .oceanGrid {
+  margin: 0 auto;
+}

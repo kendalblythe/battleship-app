@@ -1,0 +1,38 @@
+@import '../../styles/variables.scss';
+
+.button {
+  cursor: pointer;
+  white-space: nowrap;
+  border-color: $button-border-color;
+  border-radius: 0;
+  border-width: 1px;
+  border-style: solid;
+  outline: none;
+}
+
+.button:hover,
+.button:focus {
+  background-color: $button-background-color-hover;
+  border-color: $button-outline-color;
+  outline: 1px solid $button-outline-color;
+}
+
+.button:active {
+  background-color: $button-background-color;
+}
+
+.button.primary {
+  background-color: $primary-button-background-color;
+  border-color: $primary-button-border-color;
+  color: $primary-button-color;
+}
+
+.button.primary:hover,
+.button.primary:focus {
+  background-color: $primary-button-background-color-hover;
+  border-color: $primary-button-border-color-hover;
+}
+
+.button.primary:active {
+  background-color: $primary-button-background-color;
+}

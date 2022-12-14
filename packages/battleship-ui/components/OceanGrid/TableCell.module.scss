@@ -1,0 +1,98 @@
+@import '../../styles/variables.scss';
+
+.tableCell {
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.tableCell.headerCell {
+  text-align: center;
+  background-color: $table-header-cell-background-color;
+}
+
+.tableCell.headerCell > span {
+  font-weight: bold;
+  color: $table-header-cell-color;
+}
+
+.tableCell.headerCell.small > span {
+  font-size: 0.875rem;
+}
+
+.tableCell.headerCell.medium > span {
+  font-size: 1rem;
+}
+
+.tableCell.headerCell.large > span {
+  font-size: 1.125rem;
+}
+
+.tableCell .hitForwardSlash,
+.tableCell .missForwardSlash,
+.tableCell .hitBackslash,
+.tableCell .missBackslash {
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  z-index: 2;
+}
+
+.tableCell .hitForwardSlash {
+  background: linear-gradient(
+    135deg,
+    transparent calc(50% - 1px),
+    $bombed-hit-color 50%,
+    transparent calc(50% + 1px)
+  );
+}
+
+.tableCell .hitBackslash {
+  background: linear-gradient(
+    45deg,
+    transparent calc(50% - 1px),
+    $bombed-hit-color 50%,
+    transparent calc(50% + 1px)
+  );
+}
+
+.tableCell .missForwardSlash {
+  background: linear-gradient(
+    135deg,
+    transparent calc(50% - 1px),
+    $bombed-miss-color 50%,
+    transparent calc(50% + 1px)
+  );
+}
+
+.tableCell .missBackslash {
+  background: linear-gradient(
+    45deg,
+    transparent calc(50% - 1px),
+    $bombed-miss-color 50%,
+    transparent calc(50% + 1px)
+  );
+}
+
+.tableCell button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.tableCell button:hover,
+.tableCell button:focus,
+.tableCell button:active {
+  background-color: $table-active-cell-background-color;
+}

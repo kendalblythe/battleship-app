@@ -1,0 +1,79 @@
+{
+  "gridConfigs": [
+    {
+      "id": "10",
+      "size": {
+        "x": 10,
+        "y": 10
+      },
+      "ships": [
+        {
+          "id": "carrier",
+          "length": 5
+        },
+        {
+          "id": "battleship",
+          "length": 4
+        },
+        {
+          "id": "cruiser",
+          "length": 3
+        },
+        {
+          "id": "submarine",
+          "length": 3
+        },
+        {
+          "id": "destroyer",
+          "length": 2
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "size": {
+        "x": 9,
+        "y": 9
+      },
+      "ships": [
+        {
+          "id": "carrier",
+          "length": 5
+        },
+        {
+          "id": "battleship",
+          "length": 4
+        },
+        {
+          "id": "submarine",
+          "length": 3
+        },
+        {
+          "id": "patrolBoat",
+          "length": 2
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "size": {
+        "x": 6,
+        "y": 6
+      },
+      "ships": [
+        {
+          "id": "battleship",
+          "length": 3
+        },
+        {
+          "id": "destroyer",
+          "length": 2
+        },
+        {
+          "id": "submarine",
+          "length": 1
+        }
+      ]
+    }
+  ]
+}

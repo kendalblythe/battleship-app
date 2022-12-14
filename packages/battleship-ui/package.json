@@ -1,0 +1,22 @@
+{
+  "name": "battleship-ui",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "lint": "TIMING=1 eslint \"**/*.ts*\""
+  },
+  "dependencies": {
+    "battleship-engine": "*",
+    "classnames": "2.3.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.0.26",
+    "@types/react-dom": "18.0.9",
+    "eslint-config-custom": "*",
+    "sass": "1.56.1",
+    "tsconfig": "*"
+  }
+}
