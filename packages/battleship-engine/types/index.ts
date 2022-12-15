@@ -32,7 +32,6 @@ export interface Grid {
   size: GridSize;
   ships: Ship[];
   playerNum: number;
-  isOpponentGrid: boolean;
   bombedCoordinates: BombedCoordinate[];
 }
 

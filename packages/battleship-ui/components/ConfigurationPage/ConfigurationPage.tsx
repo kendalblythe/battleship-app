@@ -7,18 +7,24 @@ import { PageHeading } from "../PageHeading";
 import { Select } from "../Select/Select";
 import { Spacer } from "../Spacer";
 import { useTranslate } from "../../locales/hooks";
-import { getGridConfigLabel } from "../../utils/text";
+import { getGridConfigLabel } from "../../utils/grid";
 import styles from "./ConfigurationPage.module.scss";
 
 export interface ConfigurationPageProps {
+  gridConfigId?: string;
   onStartGame: (game: Game) => void;
 }
 
-export const ConfigurationPage = ({ onStartGame }: ConfigurationPageProps) => {
+export const ConfigurationPage = ({
+  gridConfigId: initialGridConfigId,
+  onStartGame,
+}: ConfigurationPageProps) => {
   const t = useTranslate();
 
   const [gridConfigs] = useState(getGridConfigs());
-  const [gridConfigId, setGridConfigId] = useState(gridConfigs[0].id);
+  const [gridConfigId, setGridConfigId] = useState(
+    initialGridConfigId ?? gridConfigs[0].id
+  );
   const [grid, setGrid] = useState(createGrid(gridConfigId));
 
   useEffect(() => setGrid(createGrid(gridConfigId)), [gridConfigId]);

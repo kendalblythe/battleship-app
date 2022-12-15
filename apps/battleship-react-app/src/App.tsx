@@ -1,12 +1,20 @@
-import { ConfigurationPage } from "battleship-ui/components";
+import { useState } from "react";
+import { Game } from "battleship-engine/types";
+import { ConfigurationPage, GamePage } from "battleship-ui/components";
 
 export const App = () => {
-  return (
-    <ConfigurationPage
-      onStartGame={(game) => {
-        console.info(JSON.stringify(game, null, 2));
-      }}
-    />
+  const [gridConfigId, setGridConfigId] = useState<string>();
+  const [game, setGame] = useState<Game>();
+
+  const onStartGame = (game: Game) => {
+    setGridConfigId(game.playerGrid.gridConfigId);
+    setGame(game);
+  };
+
+  return game ? (
+    <GamePage game={game} onSetGame={setGame} />
+  ) : (
+    <ConfigurationPage gridConfigId={gridConfigId} onStartGame={onStartGame} />
   );
 };
 

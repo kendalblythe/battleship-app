@@ -16,7 +16,7 @@ export const startGame = (playerGrid: Grid): Game => {
   validateGridShipCoordinates(playerGrid);
 
   // create opponent grid
-  const opponentGrid = createGrid(playerGrid.gridConfigId, true);
+  const opponentGrid = createGrid(playerGrid.gridConfigId);
 
   // determine 1st/2nd player
   const playerNum = randomBoolean() ? 1 : 2;

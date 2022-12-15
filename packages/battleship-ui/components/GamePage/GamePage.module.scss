@@ -1,0 +1,59 @@
+@import '../../styles/variables.scss';
+
+.gamePage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.gamePage > header {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding-block-end: 0.75rem;
+  margin-block-end: 1rem;
+  border-block-end: 1px solid $page-border-color;
+}
+
+.gamePage > header > * {
+  margin-inline-start: 0.5rem;
+}
+
+.gamePage > header > :last-child {
+  margin-inline-end: 0.5rem;
+}
+
+.gamePage > main {
+  display: block;
+  text-align: center;
+}
+
+@media screen and (max-width: 30rem) {
+  .gamePage,
+  .gamePage > main {
+    width: fit-content;
+  }
+}
+
+.gamePage > main > .verticalLayout {
+  position: relative;
+  display: inline-block;
+  margin: 0 1rem 1rem 1rem;
+  vertical-align: top;
+  text-align: start;
+}
+
+.gamePage > main > .verticalLayout > * {
+  display: block;
+}
+
+.gamePage > main > .verticalLayout > .sunkenShips {
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+
+.gamePage > main h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}

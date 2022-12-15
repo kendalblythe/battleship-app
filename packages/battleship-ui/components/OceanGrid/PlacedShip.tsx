@@ -1,6 +1,6 @@
 import { Ship } from "battleship-engine/types";
 import { useTranslate } from "../../locales/hooks";
-import { getShipLabel } from "../../utils/text";
+import { getShipLabel } from "../../utils/grid";
 import styles from "./PlacedShip.module.scss";
 
 export interface PlacedShipProps {

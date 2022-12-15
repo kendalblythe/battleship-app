@@ -16,9 +16,9 @@
   "gamePage.startOver.button.label": "Start over",
   "gamePage.quitGame.button.label": "Quit game",
   "gamePage.playerGrid.header.title": "You",
-  "gamePage.opponentGrid.header.title": "Computer",
-  "gamePage.winnerGrid.headerSuffix.title": " - Winner!",
-  "gamePage.sunkenShips.msg": "Sunken Ships: {sunkenShipLabels}",
-  "gamePage.sunkenShips.delimiter.msg": ", ",
+  "gamePage.opponentGrid.header.title": "Opponent",
+  "gamePage.winnerGrid.header.suffix.title": " - Winner!",
+  "gamePage.sunkShips.field.label": "Sunken Ships:",
+  "gamePage.sunkShips.delimiter.text": ", ",
   "oceanGrid.firstColumnLetter.label": "A"
 }

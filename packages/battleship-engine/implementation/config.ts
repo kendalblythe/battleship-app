@@ -14,10 +14,7 @@ export const getGridConfig = (gridConfigId: string): GridConfig => {
   return gridConfig;
 };
 
-export const createGrid = (
-  gridConfigId: string,
-  isOpponentGrid = false
-): Grid => {
+export const createGrid = (gridConfigId: string): Grid => {
   const gridConfig = getGridConfig(gridConfigId);
   const grid: Grid = {
     gridConfigId,
@@ -27,7 +24,6 @@ export const createGrid = (
       coordinates: [],
     })),
     playerNum: 0,
-    isOpponentGrid,
     bombedCoordinates: [],
   };
   randomlyPlaceShips(grid);

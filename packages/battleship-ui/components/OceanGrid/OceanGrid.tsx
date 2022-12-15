@@ -7,15 +7,18 @@ import { useTranslate } from "../../locales/hooks";
 import {
   getColumnLabel,
   getCoordinateLabel,
+  getCoordinateLabelXY,
   getRowLabel,
   getShipLabel,
-} from "../../utils/text";
+  getSunkShipIds,
+} from "../../utils/grid";
 import styles from "./OceanGrid.module.scss";
 
 export interface OceanGridProps {
   className?: string;
   tableRef?: RefObject<HTMLTableElement>;
   grid: Grid;
+  isOpponentGrid?: boolean;
   displaySize?: OceanGridDisplaySize;
   onDropBomb?: (x: number, y: number) => void;
 }
@@ -24,10 +27,12 @@ export const OceanGrid = ({
   className,
   tableRef,
   grid,
+  isOpponentGrid = false,
   displaySize = OceanGridDisplaySize.Medium,
   onDropBomb,
 }: OceanGridProps) => {
   const t = useTranslate();
+  const sunkShipIdSet = new Set(getSunkShipIds(grid));
 
   // determine cell size based on display size
   let cellSize: number;
@@ -45,10 +50,10 @@ export const OceanGrid = ({
 
   // initialize ship coordinate/label map
   const shipCoordinateLabelMap = new Map<string | null, string>();
-  grid.ships?.forEach((ship) => {
-    ship.coordinates?.forEach((coordinate) =>
+  grid.ships.forEach((ship) => {
+    ship.coordinates.forEach((coordinate) =>
       shipCoordinateLabelMap.set(
-        getCoordinateLabel(coordinate.y, coordinate.x, t),
+        getCoordinateLabel(coordinate, t),
         getShipLabel(ship.id, t)
       )
     );
@@ -56,17 +61,14 @@ export const OceanGrid = ({
 
   // initialize bombed coordinate map
   const bombedCoordinateMap = new Map<string | null, BombedCoordinate>();
-  grid.bombedCoordinates?.forEach((coordinate) =>
-    bombedCoordinateMap.set(
-      getCoordinateLabel(coordinate.y, coordinate.x, t),
-      coordinate
-    )
+  grid.bombedCoordinates.forEach((coordinate) =>
+    bombedCoordinateMap.set(getCoordinateLabel(coordinate, t), coordinate)
   );
 
   const createColumns = (rowIndex: number): Array<ReactElement> => {
     const columns = new Array<ReactElement>();
     for (let columnIndex = 0; columnIndex <= grid.size.x; columnIndex += 1) {
-      const coordinateLabel = getCoordinateLabel(rowIndex, columnIndex, t);
+      const coordinateLabel = getCoordinateLabelXY(rowIndex, columnIndex, t);
       columns.push(
         <TableCell
           key={`${rowIndex}_${columnIndex}`}
@@ -101,9 +103,11 @@ export const OceanGrid = ({
       <div ref={tableRef} className={styles.table}>
         <div className={styles.tbody}>{createRows()}</div>
       </div>
-      {grid.ships?.map((ship, idx) => (
-        <PlacedShip key={idx} ship={ship} cellSize={cellSize} />
-      ))}
+      {grid.ships
+        .filter((ship) => !isOpponentGrid || sunkShipIdSet.has(ship.id))
+        .map((ship, idx) => (
+          <PlacedShip key={idx} ship={ship} cellSize={cellSize} />
+        ))}
     </div>
   );
 };
