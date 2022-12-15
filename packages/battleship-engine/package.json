@@ -2,7 +2,7 @@
   "name": "battleship-engine",
   "version": "0.1.0",
   "license": "MIT",
-  "private": false,
+  "private": true,
   "scripts": {
     "lint": "TIMING=1 eslint \"**/*.ts*\""
   },

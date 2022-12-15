@@ -58,3 +58,5 @@ export const ConfigurationPage = ({ onStartGame }: ConfigurationPageProps) => {
     </div>
   );
 };
+
+export default ConfigurationPage;

@@ -2,7 +2,7 @@
   "name": "eslint-config-custom",
   "version": "0.1.0",
   "license": "MIT",
-  "private": false,
+  "private": true,
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "5.46.1",
     "@typescript-eslint/parser": "5.46.1",
