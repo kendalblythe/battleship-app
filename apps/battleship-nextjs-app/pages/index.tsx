@@ -19,8 +19,8 @@ export default function Home() {
         <link rel="icon" href="images/favicon.ico" />
       </Head>
       <ConfigurationPage
-        onStartGame={(grid) => {
-          console.info(JSON.stringify(grid, null, 2));
+        onStartGame={(game) => {
+          console.info(JSON.stringify(game, null, 2));
         }}
       />
     </>

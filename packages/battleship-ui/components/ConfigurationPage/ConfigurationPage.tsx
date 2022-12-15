@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { createGrid, getGridConfigurations } from "battleship-engine/api";
-import { Grid } from "battleship-engine/types";
+import { createGrid, getGridConfigs, startGame } from "battleship-engine/api";
+import { Game } from "battleship-engine/types";
 import { Button, ButtonVariant } from "../Button";
 import { OceanGrid, OceanGridDisplaySize } from "../OceanGrid";
 import { PageHeading } from "../PageHeading";
@@ -11,13 +11,13 @@ import { getGridConfigLabel } from "../../utils/text";
 import styles from "./ConfigurationPage.module.scss";
 
 export interface ConfigurationPageProps {
-  onStartGame?: (grid: Grid) => void;
+  onStartGame: (game: Game) => void;
 }
 
 export const ConfigurationPage = ({ onStartGame }: ConfigurationPageProps) => {
   const t = useTranslate();
 
-  const [gridConfigs] = useState(getGridConfigurations());
+  const [gridConfigs] = useState(getGridConfigs());
   const [gridConfigId, setGridConfigId] = useState(gridConfigs[0].id);
   const [grid, setGrid] = useState(createGrid(gridConfigId));
 
@@ -45,7 +45,7 @@ export const ConfigurationPage = ({ onStartGame }: ConfigurationPageProps) => {
         <Button
           text={t("configurationPage.startGame.button.label")}
           variant={ButtonVariant.Primary}
-          onClick={() => onStartGame?.(grid)}
+          onClick={() => onStartGame(startGame(grid))}
         />
       </header>
       <main>

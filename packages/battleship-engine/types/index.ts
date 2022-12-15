@@ -31,12 +31,13 @@ export interface Grid {
   gridConfigId: string;
   size: GridSize;
   ships: Ship[];
+  playerNum: number;
+  isOpponentGrid: boolean;
   bombedCoordinates: BombedCoordinate[];
 }
 
 export interface Game {
-  id: string;
-  yourGrid: Grid;
+  playerGrid: Grid;
   opponentGrid: Grid;
   winningPlayerNum?: number;
 }
