@@ -7,6 +7,7 @@ import { Spacer } from "../Spacer";
 import { useTranslate } from "../../locales/hooks";
 import { getShipLabel, getSunkShipIds } from "../../utils/grid";
 import styles from "./GamePage.module.scss";
+import { dropBomb } from "battleship-engine/api";
 
 export interface GamePageProps {
   game: Game;
@@ -36,15 +37,8 @@ export const GamePage = ({ game, onSetGame }: GamePageProps) => {
   }, [tableRef, playerContainerRef, opponentContainerRef]);
 
   const onDropBomb = (x: number, y: number): void => {
-    // TODO:
-    console.info(`drop bomb ${x},${y}`);
-    // dropBomb({
-    //   variables: {
-    //     gameId: game.id,
-    //     playerId: game.playerGrid.playerId,
-    //     coordinate: { x, y },
-    //   },
-    // });
+    dropBomb(game, { x, y });
+    onSetGame({ ...game });
   };
 
   const gameOver =

@@ -1,15 +1,31 @@
-import { createGrid, getGridConfig } from "./config";
+import { Coordinate, Game, Grid } from "../types";
+import { getGridConfig } from "./config";
+import { EngineErrorType, createEngineError } from "./error";
 import {
+  createGrid,
+  dropBomb as gridDropBomb,
+  dropRandomOrTargetedBomb,
   validateGridMatchGridConfig,
   validateGridShipCoordinates,
-} from "./utils/game-utils";
-import { Game, Grid } from "../types";
-import { randomBoolean } from "./utils/random-utils";
+  isAllShipsSunk,
+} from "./grid";
+import { randomBoolean } from "./random";
 
+/**
+ * Starts a new game.
+ * @param playerGrid Player grid
+ * @returns Game
+ * @throws {EngineError} [
+ *   EngineErrorType.gridConfigMismatch,
+ *   EngineErrorType.invalidShipCoordinate,
+ *   EngineErrorType.overlappingShipCoordinate,
+ *   EngineErrorType.nonadjacentShipCoordinates,
+ * ]
+ */
 export const startGame = (playerGrid: Grid): Game => {
   const gridConfig = getGridConfig(playerGrid.gridConfigId);
 
-  // validate grid matches grid configuration
+  // validate grid matches grid config
   validateGridMatchGridConfig(playerGrid, gridConfig);
 
   // validate your grid ship coordinates
@@ -24,10 +40,46 @@ export const startGame = (playerGrid: Grid): Game => {
   playerGrid.playerNum = playerNum;
   opponentGrid.playerNum = opponentPlayerNum;
 
-  // drop system player bomb if opponent 1st player
-  if (opponentPlayerNum == 1) {
-    // dropSystemPlayerBomb(playerGrid);
+  // drop random bomb on player grid if opponent 1st player
+  if (opponentPlayerNum === 1) {
+    dropRandomOrTargetedBomb(playerGrid);
   }
 
   return { playerGrid, opponentGrid } as Game;
+};
+
+/**
+ * Drops a bomb on the game opponent grid at the specified coordinate..
+ * @param game Game
+ * @param coordinate Coordinate
+ * @throws {EngineError} [
+ *   EngineErrorType.gameOverBombDrop,
+ *   EngineErrorType.invalidBombCoordinate,
+ * ]
+ */
+export const dropBomb = (game: Game, coordinate: Coordinate): void => {
+  const { playerGrid, opponentGrid } = game;
+
+  // validate game not over
+  if (game.winningPlayerNum) {
+    throw createEngineError(EngineErrorType.gameOverBombDrop);
+  }
+
+  // drop bomb
+  gridDropBomb(opponentGrid, coordinate);
+
+  // determine if game over
+  if (isAllShipsSunk(opponentGrid)) {
+    // game over - player winner
+    game.winningPlayerNum = playerGrid.playerNum;
+  } else {
+    // game not over - drop opponent bomb
+    dropRandomOrTargetedBomb(playerGrid);
+
+    // determine if game over
+    if (isAllShipsSunk(playerGrid)) {
+      // game over - opponent winner
+      game.winningPlayerNum = opponentGrid.playerNum;
+    }
+  }
 };

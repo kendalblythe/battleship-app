@@ -14,11 +14,9 @@ export interface Ship {
   coordinates: Coordinate[];
 }
 
-export interface BombedCoordinate {
-  x: number;
-  y: number;
-  hit: boolean;
-  sunkenShip?: Ship;
+export interface BombedCoordinate extends Coordinate {
+  isHit: boolean;
+  sunkShip?: Ship;
 }
 
 export interface GridConfig {

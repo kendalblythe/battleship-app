@@ -1,7 +1,20 @@
-import { Coordinate } from "../../types";
+import { Coordinate } from "../types";
 
 /**
- * Coordinate set class.
+ * Returns a coordinate as a string.
+ * @return Coordinate as string
+ */
+export function coordinateToString(coordinate: Coordinate): string;
+export function coordinateToString(x: number, y: number): string;
+export function coordinateToString(
+  arg1: Coordinate | number,
+  arg2?: number
+): string {
+  return typeof arg1 === "number" ? `${arg1},${arg2}` : `${arg1.x},${arg1.y}`;
+}
+
+/**
+ * Coordinate set.
  */
 export class CoordinateSet {
   private map: Map<string, Coordinate>;
@@ -47,7 +60,7 @@ export class CoordinateSet {
   }
 
   keys() {
-    return this.map.keys();
+    return Array.from(this.map.keys());
   }
 
   get size() {
@@ -55,18 +68,14 @@ export class CoordinateSet {
   }
 
   values() {
-    return this.map.values();
+    return Array.from(this.map.values());
   }
 }
 
 /**
- * Returns a string representation of the coordinate.
+ * Coordinate pair.
  */
-export function coordinateToString(coordinate: Coordinate): string;
-export function coordinateToString(x: number, y: number): string;
-export function coordinateToString(
-  arg1: Coordinate | number,
-  arg2?: number
-): string {
-  return typeof arg1 === "number" ? `${arg1},${arg2}` : `${arg1.x},${arg1.y}`;
+export interface CoordinatePair {
+  coordinate1: Coordinate;
+  coordinate2: Coordinate;
 }

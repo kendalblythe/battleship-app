@@ -94,10 +94,10 @@ export const TableCell = ({
     // coordinate cell
     if (bombedCoordinate) {
       // bombed coordinate cell
-      const bombedForwardSlashClassName = bombedCoordinate.hit
+      const bombedForwardSlashClassName = bombedCoordinate.isHit
         ? styles.hitForwardSlash
         : styles.missForwardSlash;
-      const bombedBackslashClassName = bombedCoordinate.hit
+      const bombedBackslashClassName = bombedCoordinate.isHit
         ? styles.hitBackslash
         : styles.missBackslash;
       return (

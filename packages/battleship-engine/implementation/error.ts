@@ -1,3 +1,6 @@
+/**
+ * Engine error.
+ */
 export class EngineError extends Error {
   public type: EngineErrorType;
   constructor(type: EngineErrorType, message: string) {
@@ -7,6 +10,9 @@ export class EngineError extends Error {
   }
 }
 
+/**
+ * Engine error type.
+ */
 export enum EngineErrorType {
   coordinateAlreadyBombed,
   gameOverBombDrop,
@@ -15,15 +21,25 @@ export enum EngineErrorType {
   invalidBombCoordinate,
   invalidShipCoordinate,
   nonadjacentShipCoordinates,
-  notTurnBombDrop,
   overlappingShipCoordinate,
 }
 
+/**
+ * Creates an EngineError instance.
+ * @param type Engine error type
+ * @param messageArgs Engine error type message arguments
+ * @returns EngineError instance
+ */
 export const createEngineError = (
   type: EngineErrorType,
   messageArgs?: string[]
 ): EngineError => new EngineError(type, getErrorMessage(type, messageArgs));
 
+/**
+ * Returns engine error type message.
+ * @param type Engine error type
+ * @returns Engine error type message
+ */
 const getErrorTypeMessage = (type: EngineErrorType): string => {
   switch (type) {
     case EngineErrorType.coordinateAlreadyBombed:
@@ -40,13 +56,17 @@ const getErrorTypeMessage = (type: EngineErrorType): string => {
       return "Invalid ship coordinate '{0}'.";
     case EngineErrorType.nonadjacentShipCoordinates:
       return "Nonadjacent ship coordinates '{0}' and '{1}'.";
-    case EngineErrorType.notTurnBombDrop:
-      return "Not player turn to drop bomb.";
     case EngineErrorType.overlappingShipCoordinate:
       return "Overlapping ship coordinate '{0}'.";
   }
 };
 
+/**
+ * Returns engine error message.
+ * @param type Engine error type
+ * @param messageArgs Engine error type message arguments
+ * @returns Engine error message
+ */
 const getErrorMessage = (
   type: EngineErrorType,
   messageArgs?: string[]

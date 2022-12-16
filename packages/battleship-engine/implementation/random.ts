@@ -1,24 +1,27 @@
 /**
  * Returns a random integer `n` such that `min <= n < max`.
- * @param [min=0] Start of random range (inclusive).
- * @param max End of random range (exclusive).
+ * @param [min=0] Start of random range (inclusive)
+ * @param max End of random range (exclusive)
+ * @return Random integer value
  */
 export function randomInt(max: number): number;
 export function randomInt(min: number, max: number): number;
 export function randomInt(arg1: number, arg2?: number): number {
   const min = Math.ceil(arg2 === undefined ? 0 : arg1);
-  const max = Math.floor(arg2 == undefined ? arg1 : arg2);
+  const max = Math.floor(arg2 === undefined ? arg1 : arg2);
   return Math.floor(Math.random() * (max - min) + min);
 }
 
 /**
  * Returns a random boolean value.
+ * @return Random boolean value
  */
 export const randomBoolean = () => randomInt(2) === 0;
 
 /**
  * Returns a shuffled array of values using the Durstenfeld shuffle algorithm.
- * @param array Array of values.
+ * @param array Array of values
+ * @return Shuffled array
  */
 export const shuffle = <T>(array: T[]): T[] => {
   const shuffledArray = array.slice();
