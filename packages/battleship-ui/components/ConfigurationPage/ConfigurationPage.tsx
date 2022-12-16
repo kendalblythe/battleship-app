@@ -6,8 +6,8 @@ import { OceanGrid, OceanGridDisplaySize } from "../OceanGrid";
 import { PageHeading } from "../PageHeading";
 import { Select } from "../Select/Select";
 import { Spacer } from "../Spacer";
-import { useTranslate } from "../../locales/hooks";
-import { getGridConfigLabel } from "../../utils/grid";
+import { useTranslate } from "../../locales";
+import { getGridConfigLabel } from "../utils";
 import styles from "./ConfigurationPage.module.scss";
 
 export interface ConfigurationPageProps {

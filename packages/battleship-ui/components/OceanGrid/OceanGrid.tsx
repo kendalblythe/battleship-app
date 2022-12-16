@@ -3,7 +3,7 @@ import cx from "classnames";
 import { BombedCoordinate, Grid } from "battleship-engine/types";
 import { PlacedShip } from "./PlacedShip";
 import { TableCell } from "./TableCell";
-import { useTranslate } from "../../locales/hooks";
+import { useTranslate } from "../../locales";
 import {
   getColumnLabel,
   getCoordinateLabel,
@@ -11,7 +11,7 @@ import {
   getRowLabel,
   getShipLabel,
   getSunkShipIds,
-} from "../../utils/grid";
+} from "../utils";
 import styles from "./OceanGrid.module.scss";
 
 export interface OceanGridProps {

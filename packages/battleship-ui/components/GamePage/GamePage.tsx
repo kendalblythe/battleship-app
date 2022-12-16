@@ -4,8 +4,8 @@ import { Button, ButtonVariant } from "../Button";
 import { OceanGrid, OceanGridDisplaySize } from "../OceanGrid";
 import { PageHeading } from "../PageHeading";
 import { Spacer } from "../Spacer";
-import { useTranslate } from "../../locales/hooks";
-import { getShipLabel, getSunkShipIds } from "../../utils/grid";
+import { useTranslate } from "../../locales";
+import { getShipLabel, getSunkShipIds } from "../utils";
 import styles from "./GamePage.module.scss";
 import { dropBomb } from "battleship-engine/api";
 
