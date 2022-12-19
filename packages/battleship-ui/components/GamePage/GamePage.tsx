@@ -1,13 +1,13 @@
-import { ReactElement, useLayoutEffect, useRef } from "react";
-import { Game, Grid } from "battleship-engine/types";
-import { Button, ButtonVariant } from "../Button";
-import { OceanGrid, OceanGridDisplaySize } from "../OceanGrid";
-import { PageHeading } from "../PageHeading";
-import { Spacer } from "../Spacer";
-import { useTranslate } from "../../locales";
-import { getShipLabel, getSunkShipIds } from "../utils";
-import styles from "./GamePage.module.scss";
-import { dropBomb } from "battleship-engine/api";
+import { ReactElement, useLayoutEffect, useRef } from 'react';
+import { Game, Grid } from 'battleship-engine/types';
+import { Button, ButtonVariant } from '../Button';
+import { OceanGrid, OceanGridDisplaySize } from '../OceanGrid';
+import { PageHeading } from '../PageHeading';
+import { Spacer } from '../Spacer';
+import { useTranslate } from '../../locales';
+import { getShipLabel, getSunkShipIds } from '../utils';
+import styles from './GamePage.module.scss';
+import { dropBomb } from 'battleship-engine/api';
 
 export interface GamePageProps {
   game: Game;
@@ -23,11 +23,7 @@ export const GamePage = ({ game, onSetGame }: GamePageProps) => {
   const opponentContainerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    if (
-      tableRef.current &&
-      playerContainerRef.current &&
-      opponentContainerRef.current
-    ) {
+    if (tableRef.current && playerContainerRef.current && opponentContainerRef.current) {
       const width = tableRef.current.offsetWidth;
       if (width > 0) {
         playerContainerRef.current.style.width = `${width}px`;
@@ -57,27 +53,21 @@ export const GamePage = ({ game, onSetGame }: GamePageProps) => {
   const getSunkShips = (grid: Grid): ReactElement | null => {
     const sunkShipIds = getSunkShipIds(grid);
     if (!sunkShipIds.length) return null;
-    const fieldLabel = t("gamePage.sunkShips.field.label");
+    const fieldLabel = t('gamePage.sunkShips.field.label');
     const sunkShips = sunkShipIds
       .map((shipId) => getShipLabel(shipId, t))
-      .join(t("gamePage.sunkShips.delimiter.text"));
-    return (
-      <span className={styles.sunkenShips}>{`${fieldLabel} ${sunkShips}`}</span>
-    );
+      .join(t('gamePage.sunkShips.delimiter.text'));
+    return <span className={styles.sunkenShips}>{`${fieldLabel} ${sunkShips}`}</span>;
   };
 
   return (
     <div className={styles.gamePage}>
       <header>
-        <PageHeading
-          text={gameOver ? t("gamePage.gameOver.title") : t("gamePage.title")}
-        />
+        <PageHeading text={gameOver ? t('gamePage.gameOver.title') : t('gamePage.title')} />
         <Spacer />
         <Button
           text={
-            gameOver
-              ? t("gamePage.startOver.button.label")
-              : t("gamePage.quitGame.button.label")
+            gameOver ? t('gamePage.startOver.button.label') : t('gamePage.quitGame.button.label')
           }
           variant={ButtonVariant.Primary}
           onClick={() => onSetGame()}
@@ -86,22 +76,18 @@ export const GamePage = ({ game, onSetGame }: GamePageProps) => {
       <main>
         <div ref={playerContainerRef} className={styles.verticalLayout}>
           <h3>
-            {t("gamePage.playerGrid.header.title")}
+            {t('gamePage.playerGrid.header.title')}
             {game.winningPlayerNum === game.playerGrid.playerNum &&
-              t("gamePage.winnerGrid.header.suffix.title")}
+              t('gamePage.winnerGrid.header.suffix.title')}
           </h3>
-          <OceanGrid
-            tableRef={tableRef}
-            grid={game.playerGrid}
-            displaySize={displaySize}
-          />
+          <OceanGrid tableRef={tableRef} grid={game.playerGrid} displaySize={displaySize} />
           {getSunkShips(game.playerGrid)}
         </div>
         <div ref={opponentContainerRef} className={styles.verticalLayout}>
           <h3>
-            {t("gamePage.opponentGrid.header.title")}
+            {t('gamePage.opponentGrid.header.title')}
             {game.winningPlayerNum === game.opponentGrid.playerNum &&
-              t("gamePage.winnerGrid.header.suffix.title")}
+              t('gamePage.winnerGrid.header.suffix.title')}
           </h3>
           {gameOver ? (
             <OceanGrid grid={game.opponentGrid} displaySize={displaySize} />

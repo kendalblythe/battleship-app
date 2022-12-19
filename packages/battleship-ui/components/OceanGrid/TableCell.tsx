@@ -1,7 +1,7 @@
-import { KeyboardEvent } from "react";
-import cx from "classnames";
-import { BombedCoordinate } from "battleship-engine/types";
-import styles from "./TableCell.module.scss";
+import { KeyboardEvent } from 'react';
+import cx from 'classnames';
+import { BombedCoordinate } from 'battleship-engine/types';
+import styles from './TableCell.module.scss';
 
 export interface TableCellProps {
   displaySize: string;
@@ -35,18 +35,13 @@ export const TableCell = ({
       Array.from(document.querySelectorAll(`button[data-row="${rowIndex}"]`));
 
     const getColumnButtons = (): Array<HTMLButtonElement> =>
-      Array.from(
-        document.querySelectorAll(`button[data-col="${columnIndex}"]`)
-      );
+      Array.from(document.querySelectorAll(`button[data-col="${columnIndex}"]`));
 
     const getButtonArrayIndex = (buttons: Array<Element>): number => {
       return buttons.findIndex((button) => {
-        const buttonRowIdx = button.getAttribute("data-row");
-        const buttonColIdx = button.getAttribute("data-col");
-        return (
-          buttonRowIdx === rowIndex.toString() &&
-          buttonColIdx === columnIndex.toString()
-        );
+        const buttonRowIdx = button.getAttribute('data-row');
+        const buttonColIdx = button.getAttribute('data-col');
+        return buttonRowIdx === rowIndex.toString() && buttonColIdx === columnIndex.toString();
       });
     };
 
@@ -71,23 +66,22 @@ export const TableCell = ({
     };
 
     switch (event.key) {
-      case "ArrowLeft":
+      case 'ArrowLeft':
         focusPreviousButton(getRowButtons());
         break;
-      case "ArrowUp":
+      case 'ArrowUp':
         focusPreviousButton(getColumnButtons());
         break;
-      case "ArrowRight":
+      case 'ArrowRight':
         focusNextButton(getRowButtons());
         break;
-      case "ArrowDown":
+      case 'ArrowDown':
         focusNextButton(getColumnButtons());
         break;
     }
   };
 
-  const coordinateLabel =
-    rowIndex && columnIndex ? columnLabel + rowLabel : null;
+  const coordinateLabel = rowIndex && columnIndex ? columnLabel + rowLabel : null;
   if (coordinateLabel) {
     const tooltip = shipName || coordinateLabel;
 
@@ -118,7 +112,7 @@ export const TableCell = ({
             onClick={(): void => onDropBomb(columnIndex, rowIndex)}
             onKeyDown={onKeyDown}
           >
-            {" "}
+            {' '}
           </button>
         </div>
       );

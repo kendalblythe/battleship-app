@@ -1,19 +1,8 @@
-import {
-  BombedCoordinate,
-  Coordinate,
-  Grid,
-  GridConfig,
-  GridSize,
-  Ship,
-} from "../types";
-import { getGridConfig } from "./config";
-import {
-  CoordinatePair,
-  CoordinateSet,
-  coordinateToString,
-} from "./coordinate";
-import { EngineErrorType, createEngineError } from "./error";
-import { randomBoolean, randomInt, shuffle } from "./random";
+import { BombedCoordinate, Coordinate, Grid, GridConfig, GridSize, Ship } from '../types';
+import { getGridConfig } from './config';
+import { CoordinatePair, CoordinateSet, coordinateToString } from './coordinate';
+import { EngineErrorType, createEngineError } from './error';
+import { randomBoolean, randomInt, shuffle } from './random';
 
 /**
  * Creates a grid with randomly placed ships for the grid config.
@@ -47,14 +36,10 @@ export const randomlyPlaceShips = (grid: Grid): void => {
 
   // place largest ships 1st followed by randomly ordered other ships followed by 1 length ships
   const largestShip = grid.ships[0];
-  const largestShips = grid.ships.filter(
-    (ship) => ship.length === largestShip.length
-  );
+  const largestShips = grid.ships.filter((ship) => ship.length === largestShip.length);
   const oneLengthShips = grid.ships.filter((ship) => ship.length === 1);
   const otherShips = shuffle(
-    grid.ships.filter(
-      (ship) => ship.length !== largestShip.length && ship.length !== 1
-    )
+    grid.ships.filter((ship) => ship.length !== largestShip.length && ship.length !== 1)
   );
   const orderedShips = [...largestShips, ...otherShips, ...oneLengthShips];
 
@@ -182,10 +167,7 @@ export const randomlyPlaceShips = (grid: Grid): void => {
  *   EngineErrorType.invalidBombCoordinate,
  * ]
  */
-export const dropBomb = (
-  grid: Grid,
-  coordinate: Coordinate
-): BombedCoordinate => {
+export const dropBomb = (grid: Grid, coordinate: Coordinate): BombedCoordinate => {
   const bombedCoordinateSet = new CoordinateSet(grid.bombedCoordinates);
 
   // validate coordinate
@@ -247,9 +229,7 @@ export const dropRandomOrTargetedBomb = (grid: Grid): BombedCoordinate => {
 
   // drop targeted bomb to sink already hit ship if applicable
   if (hitCoordinateSet.size) {
-    const availableCoordinateSet = new CoordinateSet(
-      getAvailableCoordinates(grid)
-    );
+    const availableCoordinateSet = new CoordinateSet(getAvailableCoordinates(grid));
 
     // get ordered hit coordinates
     const orderedHitCoordinates = hitCoordinateSet.values();
@@ -312,14 +292,12 @@ export const dropRandomOrTargetedBomb = (grid: Grid): BombedCoordinate => {
         { x: coordinate.x, y: coordinate.y + 1 },
         { x: coordinate.x, y: coordinate.y - 1 },
       ];
-      const availableAdjacentCoordinates = adjacentCoordinates.filter(
-        (coordinate) => availableCoordinateSet.has(coordinate)
+      const availableAdjacentCoordinates = adjacentCoordinates.filter((coordinate) =>
+        availableCoordinateSet.has(coordinate)
       );
       if (availableAdjacentCoordinates.length) {
         const coordinate =
-          availableAdjacentCoordinates[
-            randomInt(availableAdjacentCoordinates.length)
-          ];
+          availableAdjacentCoordinates[randomInt(availableAdjacentCoordinates.length)];
         return dropBomb(grid, coordinate);
       }
     }
@@ -369,32 +347,21 @@ export const isAdjacentToOccupiedCoordinate = (
  *   EngineErrorType.gridConfigMismatch,
  * ]
  */
-export const validateGridMatchGridConfig = (
-  grid: Grid,
-  gridConfig: GridConfig
-): void => {
+export const validateGridMatchGridConfig = (grid: Grid, gridConfig: GridConfig): void => {
   if (!isGridSizesEqual(grid.size, gridConfig.size)) {
-    throw createEngineError(EngineErrorType.gridConfigMismatch, [
-      grid.gridConfigId,
-    ]);
+    throw createEngineError(EngineErrorType.gridConfigMismatch, [grid.gridConfigId]);
   }
   if (grid.ships.length !== gridConfig.ships.length) {
-    throw createEngineError(EngineErrorType.gridConfigMismatch, [
-      grid.gridConfigId,
-    ]);
+    throw createEngineError(EngineErrorType.gridConfigMismatch, [grid.gridConfigId]);
   }
   for (let i = 0; i < grid.ships.length; i++) {
     const gridShip = grid.ships[i];
     const gridConfigShip = gridConfig.ships[i];
     if (gridShip.length !== gridConfigShip.length) {
-      throw createEngineError(EngineErrorType.gridConfigMismatch, [
-        grid.gridConfigId,
-      ]);
+      throw createEngineError(EngineErrorType.gridConfigMismatch, [grid.gridConfigId]);
     }
     if (gridShip.coordinates.length !== gridConfigShip.length) {
-      throw createEngineError(EngineErrorType.gridConfigMismatch, [
-        grid.gridConfigId,
-      ]);
+      throw createEngineError(EngineErrorType.gridConfigMismatch, [grid.gridConfigId]);
     }
   }
 };
@@ -409,9 +376,7 @@ export const validateGridMatchGridConfig = (
  * ]
  */
 export const validateGridShipCoordinates = (grid: Grid): void => {
-  const availableCoordinateSet = new CoordinateSet(
-    getAvailableCoordinates(grid)
-  );
+  const availableCoordinateSet = new CoordinateSet(getAvailableCoordinates(grid));
   const placedCoordinateSet = new CoordinateSet();
   for (const ship of grid.ships) {
     let previousCoordinate: Coordinate | undefined;
@@ -531,10 +496,7 @@ export const isAdjacentCoordinates = (
  * @param coordinate2 Coordinate 2
  * @returns True if the coordinates are equal
  */
-export const isCoordinatesEqual = (
-  coordinate1: Coordinate,
-  coordinate2: Coordinate
-): boolean =>
+export const isCoordinatesEqual = (coordinate1: Coordinate, coordinate2: Coordinate): boolean =>
   coordinate1.x === coordinate2.x && coordinate1.y === coordinate2.y;
 
 /**

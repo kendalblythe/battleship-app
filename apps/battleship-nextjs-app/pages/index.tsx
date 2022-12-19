@@ -1,22 +1,19 @@
-import { useState } from "react";
-import dynamic from "next/dynamic";
-import Head from "next/head";
-import { Game } from "battleship-engine/types";
+import { useState } from 'react';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
+import { Game } from 'battleship-engine/types';
 
 // Dynamic import with ssr = false resolves React hydration error.
 // https://stackoverflow.com/questions/66374123/warning-text-content-did-not-match-server-im-out-client-im-in-div
 const ConfigurationPage = dynamic(
-  () => import("battleship-ui/components/ConfigurationPage/ConfigurationPage"),
+  () => import('battleship-ui/components/ConfigurationPage/ConfigurationPage'),
   {
     ssr: false,
   }
 );
-const GamePage = dynamic(
-  () => import("battleship-ui/components/GamePage/GamePage"),
-  {
-    ssr: false,
-  }
-);
+const GamePage = dynamic(() => import('battleship-ui/components/GamePage/GamePage'), {
+  ssr: false,
+});
 
 export default function Home() {
   const [gridConfigId, setGridConfigId] = useState<string>();
@@ -37,10 +34,7 @@ export default function Home() {
       {game ? (
         <GamePage game={game} onSetGame={setGame} />
       ) : (
-        <ConfigurationPage
-          gridConfigId={gridConfigId}
-          onStartGame={onStartGame}
-        />
+        <ConfigurationPage gridConfigId={gridConfigId} onStartGame={onStartGame} />
       )}
     </>
   );

@@ -1,7 +1,7 @@
-import { Ship } from "battleship-engine/types";
-import { useTranslate } from "../../locales";
-import { getShipLabel } from "../utils";
-import styles from "./PlacedShip.module.scss";
+import { Ship } from 'battleship-engine/types';
+import { useTranslate } from '../../locales';
+import { getShipLabel } from '../utils';
+import styles from './PlacedShip.module.scss';
 
 export interface PlacedShipProps {
   ship: Ship;
@@ -13,8 +13,7 @@ export const PlacedShip = ({ ship, cellSize }: PlacedShipProps) => {
 
   if (!ship.coordinates) return null;
 
-  const horizontal =
-    ship.length === 1 || ship.coordinates[0].y === ship.coordinates[1].y;
+  const horizontal = ship.length === 1 || ship.coordinates[0].y === ship.coordinates[1].y;
   const marginSize = 1;
   const shipSize = cellSize * ship.length - marginSize * 2;
   const top = cellSize * ship.coordinates[0].y + marginSize + 1;
@@ -26,11 +25,5 @@ export const PlacedShip = ({ ship, cellSize }: PlacedShipProps) => {
     height: horizontal ? cellSize - marginSize * 2 : shipSize,
   };
 
-  return (
-    <div
-      className={styles.placedShip}
-      style={divStyle}
-      title={getShipLabel(ship.id, t)}
-    />
-  );
+  return <div className={styles.placedShip} style={divStyle} title={getShipLabel(ship.id, t)} />;
 };

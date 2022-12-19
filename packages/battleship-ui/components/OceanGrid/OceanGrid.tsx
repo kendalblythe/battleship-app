@@ -1,9 +1,9 @@
-import { ReactElement, RefObject } from "react";
-import cx from "classnames";
-import { BombedCoordinate, Grid } from "battleship-engine/types";
-import { PlacedShip } from "./PlacedShip";
-import { TableCell } from "./TableCell";
-import { useTranslate } from "../../locales";
+import { ReactElement, RefObject } from 'react';
+import cx from 'classnames';
+import { BombedCoordinate, Grid } from 'battleship-engine/types';
+import { PlacedShip } from './PlacedShip';
+import { TableCell } from './TableCell';
+import { useTranslate } from '../../locales';
 import {
   getColumnLabel,
   getCoordinateLabel,
@@ -11,8 +11,8 @@ import {
   getRowLabel,
   getShipLabel,
   getSunkShipIds,
-} from "../utils";
-import styles from "./OceanGrid.module.scss";
+} from '../utils';
+import styles from './OceanGrid.module.scss';
 
 export interface OceanGridProps {
   className?: string;
@@ -52,10 +52,7 @@ export const OceanGrid = ({
   const shipCoordinateLabelMap = new Map<string | null, string>();
   grid.ships.forEach((ship) => {
     ship.coordinates.forEach((coordinate) =>
-      shipCoordinateLabelMap.set(
-        getCoordinateLabel(coordinate, t),
-        getShipLabel(ship.id, t)
-      )
+      shipCoordinateLabelMap.set(getCoordinateLabel(coordinate, t), getShipLabel(ship.id, t))
     );
   });
 
@@ -113,7 +110,7 @@ export const OceanGrid = ({
 };
 
 export enum OceanGridDisplaySize {
-  Small = "small",
-  Medium = "medium",
-  Large = "large",
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
 }

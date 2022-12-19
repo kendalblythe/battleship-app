@@ -1,6 +1,6 @@
-import { GridConfig } from "../types";
-import { createEngineError, EngineErrorType } from "./error";
-import config from "./config.json";
+import { GridConfig } from '../types';
+import { createEngineError, EngineErrorType } from './error';
+import config from './config.json';
 
 /**
  * Returns all grid configs.
@@ -19,9 +19,7 @@ export const getGridConfigs = (): GridConfig[] => {
  * ]
  */
 export const getGridConfig = (gridConfigId: string): GridConfig => {
-  const gridConfig = getGridConfigs().find(
-    (gridConfig) => gridConfig.id === gridConfigId
-  );
+  const gridConfig = getGridConfigs().find((gridConfig) => gridConfig.id === gridConfigId);
   if (!gridConfig) {
     throw createEngineError(EngineErrorType.gridConfigNotFound, [gridConfigId]);
   }

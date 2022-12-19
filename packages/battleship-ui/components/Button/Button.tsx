@@ -1,6 +1,6 @@
-import { MouseEvent } from "react";
-import cx from "classnames";
-import styles from "./Button.module.scss";
+import { MouseEvent } from 'react';
+import cx from 'classnames';
+import styles from './Button.module.scss';
 
 export interface ButtonProps {
   text: string;
@@ -19,5 +19,5 @@ export const Button = ({ text, variant, onClick }: ButtonProps) => (
 );
 
 export enum ButtonVariant {
-  Primary = "primary",
+  Primary = 'primary',
 }

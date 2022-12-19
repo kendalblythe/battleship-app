@@ -1,6 +1,6 @@
-import { Coordinate, Game, Grid } from "../types";
-import { getGridConfig } from "./config";
-import { EngineErrorType, createEngineError } from "./error";
+import { Coordinate, Game, Grid } from '../types';
+import { getGridConfig } from './config';
+import { EngineErrorType, createEngineError } from './error';
 import {
   createGrid,
   dropBomb as gridDropBomb,
@@ -8,8 +8,8 @@ import {
   validateGridMatchGridConfig,
   validateGridShipCoordinates,
   isAllShipsSunk,
-} from "./grid";
-import { randomBoolean } from "./random";
+} from './grid';
+import { randomBoolean } from './random';
 
 /**
  * Starts a new game.

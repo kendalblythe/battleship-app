@@ -1,4 +1,4 @@
-import { Coordinate } from "../types";
+import { Coordinate } from '../types';
 
 /**
  * Returns a coordinate as a string.
@@ -6,11 +6,8 @@ import { Coordinate } from "../types";
  */
 export function coordinateToString(coordinate: Coordinate): string;
 export function coordinateToString(x: number, y: number): string;
-export function coordinateToString(
-  arg1: Coordinate | number,
-  arg2?: number
-): string {
-  return typeof arg1 === "number" ? `${arg1},${arg2}` : `${arg1.x},${arg1.y}`;
+export function coordinateToString(arg1: Coordinate | number, arg2?: number): string {
+  return typeof arg1 === 'number' ? `${arg1},${arg2}` : `${arg1.x},${arg1.y}`;
 }
 
 /**
@@ -45,11 +42,7 @@ export class CoordinateSet {
   }
 
   forEach(
-    callbackfn: (
-      value: Coordinate,
-      key: string,
-      map: Map<string, Coordinate>
-    ) => void,
+    callbackfn: (value: Coordinate, key: string, map: Map<string, Coordinate>) => void,
     thisArg?: unknown
   ) {
     this.map.forEach(callbackfn, thisArg);

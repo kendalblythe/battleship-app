@@ -1,5 +1,5 @@
-import { ChangeEvent } from "react";
-import styles from "./Select.module.scss";
+import { ChangeEvent } from 'react';
+import styles from './Select.module.scss';
 
 export interface SelectProps {
   value?: string | number;

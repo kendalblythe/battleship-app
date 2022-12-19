@@ -1,4 +1,4 @@
-import styles from "./PageHeading.module.scss";
+import styles from './PageHeading.module.scss';
 
 export interface PageHeadingProps {
   text: string;

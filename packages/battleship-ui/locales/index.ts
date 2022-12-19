@@ -1,9 +1,8 @@
-import defaultLocaleMessages from "./en.json";
+import defaultLocaleMessages from './en.json';
 
 export type Translate = (key: string) => string;
 
-export const useTranslate = (): Translate => (key: string) =>
-  getLocalizedText(key);
+export const useTranslate = (): Translate => (key: string) => getLocalizedText(key);
 
 export const getLocalizedText = (key: string): string => {
   const messages = getMessagesForCurrentLocale();
@@ -11,5 +10,4 @@ export const getLocalizedText = (key: string): string => {
   return value || key;
 };
 
-export const getMessagesForCurrentLocale = (): Record<string, string> =>
-  defaultLocaleMessages; // always return default locale (en) for now
+export const getMessagesForCurrentLocale = (): Record<string, string> => defaultLocaleMessages; // always return default locale (en) for now

@@ -1,3 +1,3 @@
-import styles from "./Spacer.module.scss";
+import styles from './Spacer.module.scss';
 
 export const Spacer = () => <div className={styles.spacer} />;

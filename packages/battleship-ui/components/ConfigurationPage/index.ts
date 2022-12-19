@@ -1,1 +1,1 @@
-export * from "./ConfigurationPage";
+export * from './ConfigurationPage';

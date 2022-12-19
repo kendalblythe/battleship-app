@@ -5,7 +5,7 @@ export class EngineError extends Error {
   public type: EngineErrorType;
   constructor(type: EngineErrorType, message: string) {
     super(message);
-    this.name = "EngineError";
+    this.name = 'EngineError';
     this.type = type;
   }
 }
@@ -30,10 +30,8 @@ export enum EngineErrorType {
  * @param messageArgs Engine error type message arguments
  * @returns EngineError instance
  */
-export const createEngineError = (
-  type: EngineErrorType,
-  messageArgs?: string[]
-): EngineError => new EngineError(type, getErrorMessage(type, messageArgs));
+export const createEngineError = (type: EngineErrorType, messageArgs?: string[]): EngineError =>
+  new EngineError(type, getErrorMessage(type, messageArgs));
 
 /**
  * Returns engine error type message.
@@ -45,7 +43,7 @@ const getErrorTypeMessage = (type: EngineErrorType): string => {
     case EngineErrorType.coordinateAlreadyBombed:
       return "Coordinate '{0}' already bombed.";
     case EngineErrorType.gameOverBombDrop:
-      return "Not player turn to drop bomb - game over.";
+      return 'Not player turn to drop bomb - game over.';
     case EngineErrorType.gridConfigMismatch:
       return "Grid does not match grid configuration '{0}'.";
     case EngineErrorType.gridConfigNotFound:
@@ -67,10 +65,7 @@ const getErrorTypeMessage = (type: EngineErrorType): string => {
  * @param messageArgs Engine error type message arguments
  * @returns Engine error message
  */
-const getErrorMessage = (
-  type: EngineErrorType,
-  messageArgs?: string[]
-): string => {
+const getErrorMessage = (type: EngineErrorType, messageArgs?: string[]): string => {
   let message = getErrorTypeMessage(type);
   if (messageArgs) {
     for (let i = 0; i < messageArgs.length; i++) {

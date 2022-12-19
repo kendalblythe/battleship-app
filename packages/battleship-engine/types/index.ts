@@ -22,7 +22,7 @@ export interface BombedCoordinate extends Coordinate {
 export interface GridConfig {
   id: string;
   size: GridSize;
-  ships: Omit<Ship, "coordinates">[];
+  ships: Omit<Ship, 'coordinates'>[];
 }
 
 export interface Grid {
