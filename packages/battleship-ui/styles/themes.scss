@@ -24,7 +24,7 @@ $theme-map-blue-light: (
   --battleship-select-outline-color: $light-outline-color,
   --battleship-select-focusring-text-shadow-color: $black,
 
-  --battleship-bombed-hit-color: $teal,
+  --battleship-bombed-hit-color: $red,
   --battleship-bombed-miss-color: $gray,
 
   --battleship-table-border-color: $light-border-color,
@@ -32,7 +32,7 @@ $theme-map-blue-light: (
   --battleship-table-header-cell-background-color: $lightest_gray,
   --battleship-table-active-cell-background-color: $lightest_gray,
 
-  --battleship-ship-background-color: rgba($blue-primary-color, 0.25),
+  --battleship-ship-background-color: rgba($blue-primary-color, 0.2),
   --battleship-ship-border-color: $blue-primary-color,
 );
 
@@ -40,22 +40,22 @@ $theme-map-blue-light: (
   @include spread-map($theme-map-blue-light);
 }
 
-// teal/light theme
+// purple/light theme
 
-$theme-map-teal-light: map.merge(
+$theme-map-purple-light: map.merge(
   $theme-map-blue-light,
   (
-    --battleship-page-heading-color: $teal-primary-color,
-    --battleship-primary-button-background-color: $teal-primary-color,
-    --battleship-primary-button-background-color-hover: lighten($teal-primary-color, 5%),
-    --battleship-primary-button-border-color: $teal-primary-color,
-    --battleship-primary-button-border-color-hover: lighten($teal-primary-color, 5%),
-    --battleship-table-header-cell-color: $teal-primary-color,
-    --battleship-ship-background-color: rgba($teal-primary-color, 0.25),
-    --battleship-ship-border-color: $teal-primary-color,
+    --battleship-page-heading-color: $purple-primary-color,
+    --battleship-primary-button-background-color: $purple-primary-color,
+    --battleship-primary-button-background-color-hover: lighten($purple-primary-color, 5%),
+    --battleship-primary-button-border-color: $purple-primary-color,
+    --battleship-primary-button-border-color-hover: lighten($purple-primary-color, 5%),
+    --battleship-table-header-cell-color: $purple-primary-color,
+    --battleship-ship-background-color: rgba($purple-primary-color, 0.2),
+    --battleship-ship-border-color: $purple-primary-color,
   )
 );
 
-:root.battleship-teal-light-theme {
-  @include spread-map($theme-map-teal-light);
+:root.battleship-purple-light-theme {
+  @include spread-map($theme-map-purple-light);
 }
