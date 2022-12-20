@@ -1,11 +1,11 @@
-@import '../../styles/variables.scss';
+@import '../../styles/themes';
 
 .configurationPage {
   display: flex;
   flex-direction: column;
   height: 100%;
   position: relative;
-  background-color: $page-background-color;
+  background-color: var(--battleship-page-background-color);
 }
 
 .configurationPage > header {
@@ -14,7 +14,7 @@
   box-sizing: border-box;
   padding-block-end: 0.75rem;
   margin-block-end: 1rem;
-  border-block-end: 1px solid $page-border-color;
+  border-block-end: 1px solid var(--battleship-page-border-color);
 }
 
 .configurationPage > header > * {

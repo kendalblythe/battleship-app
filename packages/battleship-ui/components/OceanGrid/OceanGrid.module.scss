@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import '../../styles/themes';
 
 .oceanGrid {
   display: inline-block;
@@ -6,11 +6,11 @@
 }
 
 .oceanGrid > .table {
-  border: 1px solid $table-border-color;
+  border: 1px solid var(--battleship-table-border-color);
 }
 
 .oceanGrid > .table > .tbody > .tr > div {
-  border: 1px solid $table-border-color;
+  border: 1px solid var(--battleship-table-border-color);
 }
 
 .oceanGrid.small > .table > .tbody > .tr > div {

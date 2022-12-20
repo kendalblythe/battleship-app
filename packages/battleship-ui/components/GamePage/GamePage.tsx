@@ -57,7 +57,7 @@ export const GamePage = ({ game, onSetGame }: GamePageProps) => {
     const sunkShips = sunkShipIds
       .map((shipId) => getShipLabel(shipId, t))
       .join(t('gamePage.sunkShips.delimiter.text'));
-    return <span className={styles.sunkenShips}>{`${fieldLabel} ${sunkShips}`}</span>;
+    return <span className={styles.sunkShips}>{`${fieldLabel} ${sunkShips}`}</span>;
   };
 
   return (

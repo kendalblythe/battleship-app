@@ -1,8 +1,11 @@
-html, body, #__next {
+html,
+body,
+#__next {
   height: 100%;
   overflow: hidden;
 }
 
 body {
   padding: 1rem calc(50% - 25rem);
+  background-color: var(--battleship-page-background-color);
 }

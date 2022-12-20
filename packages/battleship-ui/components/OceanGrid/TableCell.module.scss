@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import '../../styles/themes';
 
 .tableCell {
   position: relative;
@@ -8,12 +8,12 @@
 
 .tableCell.headerCell {
   text-align: center;
-  background-color: $table-header-cell-background-color;
+  background-color: var(--battleship-table-header-cell-background-color);
 }
 
 .tableCell.headerCell > span {
   font-weight: bold;
-  color: $table-header-cell-color;
+  color: var(--battleship-table-header-cell-color);
 }
 
 .tableCell.headerCell.small > span {
@@ -44,7 +44,7 @@
   background: linear-gradient(
     135deg,
     transparent calc(50% - 1px),
-    $bombed-hit-color 50%,
+    var(--battleship-bombed-hit-color) 50%,
     transparent calc(50% + 1px)
   );
 }
@@ -53,7 +53,7 @@
   background: linear-gradient(
     45deg,
     transparent calc(50% - 1px),
-    $bombed-hit-color 50%,
+    var(--battleship-bombed-hit-color) 50%,
     transparent calc(50% + 1px)
   );
 }
@@ -62,7 +62,7 @@
   background: linear-gradient(
     135deg,
     transparent calc(50% - 1px),
-    $bombed-miss-color 50%,
+    var(--battleship-bombed-miss-color) 50%,
     transparent calc(50% + 1px)
   );
 }
@@ -71,7 +71,7 @@
   background: linear-gradient(
     45deg,
     transparent calc(50% - 1px),
-    $bombed-miss-color 50%,
+    var(--battleship-bombed-miss-color) 50%,
     transparent calc(50% + 1px)
   );
 }
@@ -94,5 +94,5 @@
 .tableCell button:hover,
 .tableCell button:focus,
 .tableCell button:active {
-  background-color: $table-active-cell-background-color;
+  background-color: var(--battleship-table-active-cell-background-color);
 }

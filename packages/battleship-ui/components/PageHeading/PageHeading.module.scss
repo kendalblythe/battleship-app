@@ -1,7 +1,7 @@
-@import '../../styles/variables.scss';
+@import '../../styles/themes';
 
 .heading {
-  color: $page-heading-color;
+  color: var(--battleship-page-heading-color);
   margin: 0 0.5rem;
   word-break: normal;
 }

@@ -1,0 +1,61 @@
+@use 'sass:map';
+@import 'mixins';
+@import 'variables';
+
+// blue/light theme
+
+$theme-map-blue-light: (
+  --battleship-page-background-color: $white,
+  --battleship-page-border-color: $light-border-color,
+  --battleship-page-heading-color: $blue-primary-color,
+
+  --battleship-button-background-color: $white,
+  --battleship-button-background-color-hover: $lightest_gray,
+  --battleship-button-border-color: $light-border-color,
+  --battleship-button-outline-color: $light-outline-color,
+
+  --battleship-primary-button-background-color: $blue-primary-color,
+  --battleship-primary-button-background-color-hover: lighten($blue-primary-color, 5%),
+  --battleship-primary-button-border-color: $blue-primary-color,
+  --battleship-primary-button-border-color-hover: lighten($blue-primary-color, 5%),
+  --battleship-primary-button-color: $white,
+
+  --battleship-select-border-color: $light-border-color,
+  --battleship-select-outline-color: $light-outline-color,
+  --battleship-select-focusring-text-shadow-color: $black,
+
+  --battleship-bombed-hit-color: $teal,
+  --battleship-bombed-miss-color: $gray,
+
+  --battleship-table-border-color: $light-border-color,
+  --battleship-table-header-cell-color: $blue-primary-color,
+  --battleship-table-header-cell-background-color: $lightest_gray,
+  --battleship-table-active-cell-background-color: $lightest_gray,
+
+  --battleship-ship-background-color: rgba($blue-primary-color, 0.25),
+  --battleship-ship-border-color: $blue-primary-color,
+);
+
+:root.battleship-blue-light-theme {
+  @include spread-map($theme-map-blue-light);
+}
+
+// teal/light theme
+
+$theme-map-teal-light: map.merge(
+  $theme-map-blue-light,
+  (
+    --battleship-page-heading-color: $teal-primary-color,
+    --battleship-primary-button-background-color: $teal-primary-color,
+    --battleship-primary-button-background-color-hover: lighten($teal-primary-color, 5%),
+    --battleship-primary-button-border-color: $teal-primary-color,
+    --battleship-primary-button-border-color-hover: lighten($teal-primary-color, 5%),
+    --battleship-table-header-cell-color: $teal-primary-color,
+    --battleship-ship-background-color: rgba($teal-primary-color, 0.25),
+    --battleship-ship-border-color: $teal-primary-color,
+  )
+);
+
+:root.battleship-teal-light-theme {
+  @include spread-map($theme-map-teal-light);
+}

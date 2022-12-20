@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import '../../styles/themes';
 
 .gamePage {
   display: flex;
@@ -13,7 +13,7 @@
   box-sizing: border-box;
   padding-block-end: 0.75rem;
   margin-block-end: 1rem;
-  border-block-end: 1px solid $page-border-color;
+  border-block-end: 1px solid var(--battleship-page-border-color);
 }
 
 .gamePage > header > * {
@@ -48,7 +48,7 @@
   display: block;
 }
 
-.gamePage > main > .verticalLayout > .sunkenShips {
+.gamePage > main > .verticalLayout > .sunkShips {
   font-style: italic;
   margin-top: 0.25rem;
 }

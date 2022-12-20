@@ -1,9 +1,9 @@
-@import '../../styles/variables.scss';
+@import '../../styles/themes';
 
 .button {
   cursor: pointer;
   white-space: nowrap;
-  border-color: $button-border-color;
+  border-color: var(--battleship-button-border-color);
   border-radius: 0;
   border-width: 1px;
   border-style: solid;
@@ -12,27 +12,27 @@
 
 .button:hover,
 .button:focus {
-  background-color: $button-background-color-hover;
-  border-color: $button-outline-color;
-  outline: 1px solid $button-outline-color;
+  background-color: var(--battleship-button-background-color-hover);
+  border-color: var(--battleship-button-outline-color);
+  outline: 1px solid var(--battleship-button-outline-color);
 }
 
 .button:active {
-  background-color: $button-background-color;
+  background-color: var(--battleship-button-background-color);
 }
 
 .button.primary {
-  background-color: $primary-button-background-color;
-  border-color: $primary-button-border-color;
-  color: $primary-button-color;
+  background-color: var(--battleship-primary-button-background-color);
+  border-color: var(--battleship-primary-button-border-color);
+  color: var(--battleship-primary-button-color);
 }
 
 .button.primary:hover,
 .button.primary:focus {
-  background-color: $primary-button-background-color-hover;
-  border-color: $primary-button-border-color-hover;
+  background-color: var(--battleship-primary-button-background-color-hover);
+  border-color: var(--battleship-primary-button-border-color-hover);
 }
 
 .button.primary:active {
-  background-color: $primary-button-background-color;
+  background-color: var(--battleship-primary-button-background-color);
 }

@@ -1,7 +1,7 @@
-@import '../../styles/variables.scss';
+@import '../../styles/themes';
 
 .select {
-  border-color: $select-border-color;
+  border-color: var(--battleship-select-border-color);
   border-radius: 0;
   border-width: 1px;
   border-style: solid;
@@ -10,12 +10,12 @@
 
 .select:hover,
 .select:focus {
-  border-color: $select-outline-color;
-  outline: 1px solid $select-outline-color;
+  border-color: var(--battleship-select-outline-color);
+  outline: 1px solid var(--battleship-select-outline-color);
 }
 
 // Remove unnecessary outline in Firefox
 .select:-moz-focusring {
   color: transparent;
-  text-shadow: 0 0 0 $black;
+  text-shadow: 0 0 0 var(--battleship-select-focusring-text-shadow-color);
 }
