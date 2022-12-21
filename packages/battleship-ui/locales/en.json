@@ -16,7 +16,7 @@
   "gamePage.startOver.button.label": "Start over",
   "gamePage.quitGame.button.label": "Quit game",
   "gamePage.playerGrid.header.title": "You",
-  "gamePage.opponentGrid.header.title": "Opponent",
+  "gamePage.opponentGrid.header.title": "Computer",
   "gamePage.winnerGrid.header.suffix.title": " - Winner!",
   "gamePage.sunkShips.field.label": "Sunk:",
   "gamePage.sunkShips.delimiter.text": ", ",

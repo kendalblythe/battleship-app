@@ -206,109 +206,6 @@ export const dropBomb = (grid: Grid, coordinate: Coordinate): BombedCoordinate =
 };
 
 /**
- * Drops a bomb on the grid at a random or targeted coordinate.
- * @param grid Grid
- * @returns Bombed coordinate
- * @throws {EngineError} [
- *   EngineErrorType.gameOverBombDrop,
- * ]
- */
-export const dropRandomOrTargetedBomb = (grid: Grid): BombedCoordinate => {
-  // get ship hit coordinates not associated with a sunk ship
-  const hitCoordinateSet = new CoordinateSet();
-  for (const bombedCoordinate of grid.bombedCoordinates) {
-    if (bombedCoordinate.isHit) {
-      hitCoordinateSet.add(bombedCoordinate);
-      if (bombedCoordinate.sunkShip) {
-        for (const shipCoordinate of bombedCoordinate.sunkShip.coordinates) {
-          hitCoordinateSet.delete(shipCoordinate);
-        }
-      }
-    }
-  }
-
-  // drop targeted bomb to sink already hit ship if applicable
-  if (hitCoordinateSet.size) {
-    const availableCoordinateSet = new CoordinateSet(getAvailableCoordinates(grid));
-
-    // get ordered hit coordinates
-    const orderedHitCoordinates = hitCoordinateSet.values();
-    orderedHitCoordinates.sort((a, b) => {
-      if (a.x === b.x) return a.y - b.y;
-      return a.x - b.x;
-    });
-
-    // get adjacent hit coordinates
-    const adjacentHitCoordinates: CoordinatePair[] = [];
-    for (let i = 0; i < orderedHitCoordinates.length - 1; i++) {
-      const coordinate1 = orderedHitCoordinates[i];
-      for (let j = i + 1; j < orderedHitCoordinates.length; j++) {
-        const coordinate2 = orderedHitCoordinates[j];
-        if (isAdjacentCoordinates(coordinate1, coordinate2)) {
-          adjacentHitCoordinates.push({ coordinate1, coordinate2 });
-        }
-      }
-    }
-
-    // bomb adjacent hit path coordinate if available
-    for (const { coordinate1, coordinate2 } of adjacentHitCoordinates) {
-      const deltas = randomBoolean() ? [1, -1] : [-1, 1];
-      if (coordinate1.x === coordinate2.x) {
-        // direction vertical
-        for (const delta of deltas) {
-          let nextCoordinate: Coordinate = {
-            x: coordinate1.x,
-            y: coordinate2.y + delta,
-          };
-          while (hitCoordinateSet.has(nextCoordinate)) {
-            nextCoordinate = { x: coordinate1.x, y: nextCoordinate.y + delta };
-          }
-          if (availableCoordinateSet.has(nextCoordinate)) {
-            return dropBomb(grid, nextCoordinate);
-          }
-        }
-      } else {
-        // direction horizontal
-        for (const delta of deltas) {
-          let nextCoordinate: Coordinate = {
-            x: coordinate2.x + delta,
-            y: coordinate1.y,
-          };
-          while (hitCoordinateSet.has(nextCoordinate)) {
-            nextCoordinate = { x: nextCoordinate.x + delta, y: coordinate1.y };
-          }
-          if (availableCoordinateSet.has(nextCoordinate)) {
-            return dropBomb(grid, nextCoordinate);
-          }
-        }
-      }
-    }
-
-    // bomb random adjacent hit coordinate if available
-    for (const coordinate of orderedHitCoordinates) {
-      const adjacentCoordinates: Coordinate[] = [
-        { x: coordinate.x + 1, y: coordinate.y },
-        { x: coordinate.x - 1, y: coordinate.y },
-        { x: coordinate.x, y: coordinate.y + 1 },
-        { x: coordinate.x, y: coordinate.y - 1 },
-      ];
-      const availableAdjacentCoordinates = adjacentCoordinates.filter((coordinate) =>
-        availableCoordinateSet.has(coordinate)
-      );
-      if (availableAdjacentCoordinates.length) {
-        const coordinate =
-          availableAdjacentCoordinates[randomInt(availableAdjacentCoordinates.length)];
-        return dropBomb(grid, coordinate);
-      }
-    }
-  }
-
-  // bomb random available coordinate
-  const coordinate = getRandomAvailableCoordinate(grid);
-  return dropBomb(grid, coordinate);
-};
-
-/**
  * Returns true if coordinate is adjacent to occupied coordinate.
  * Otherwise false is returned.
  * @param coordinates Coordinates
@@ -376,7 +273,8 @@ export const validateGridMatchGridConfig = (grid: Grid, gridConfig: GridConfig):
  * ]
  */
 export const validateGridShipCoordinates = (grid: Grid): void => {
-  const availableCoordinateSet = new CoordinateSet(getAvailableCoordinates(grid));
+  const { availableCoordinates } = getAvailableCoordinates(grid);
+  const availableCoordinateSet = new CoordinateSet(availableCoordinates);
   const placedCoordinateSet = new CoordinateSet();
   for (const ship of grid.ships) {
     let previousCoordinate: Coordinate | undefined;
@@ -411,7 +309,9 @@ export const validateGridShipCoordinates = (grid: Grid): void => {
  * @param grid Grid
  * @returns Grid coordinates
  */
-export const getAvailableCoordinates = (grid: Grid): Coordinate[] => {
+export const getAvailableCoordinates = (
+  grid: Grid
+): { availableCoordinates: Coordinate[]; bombedCoordinateSet: CoordinateSet } => {
   const bombedCoordinateSet = new CoordinateSet(grid.bombedCoordinates);
   const availableCoordinates: Coordinate[] = [];
   for (let x = 1; x <= grid.size.x; x++) {
@@ -422,23 +322,7 @@ export const getAvailableCoordinates = (grid: Grid): Coordinate[] => {
       }
     }
   }
-  return availableCoordinates;
-};
-
-/**
- * Returns a random available grid coordinate.
- * @param grid Grid
- * @returns Grid coordinate
- * @throws {EngineError} [
- *   EngineErrorType.gameOverBombDrop,
- * ]
- */
-export const getRandomAvailableCoordinate = (grid: Grid): Coordinate => {
-  const availableCoordinates = getAvailableCoordinates(grid);
-  if (availableCoordinates.length === 0) {
-    throw createEngineError(EngineErrorType.gameOverBombDrop);
-  }
-  return availableCoordinates[randomInt(availableCoordinates.length)];
+  return { availableCoordinates, bombedCoordinateSet };
 };
 
 /**
@@ -473,6 +357,27 @@ export const isSunkShip = (ship: Ship, grid: Grid): boolean => {
     }
   }
   return false;
+};
+
+/**
+ *
+ * @param grid Returns true if adjacent coordinate is bombed. Otherwise false is returned.
+ * @param bombedCoordinateSet Bombed coordinate set
+ * @param coordinate Coordinate
+ * @returns True if adjacent coordinate is bombed.
+ */
+export const isAdjacentCoordinateBombed = (
+  bombedCoordinateSet: CoordinateSet,
+  coordinate: Coordinate
+): boolean => {
+  const { x, y } = coordinate;
+  const top: Coordinate = { x, y: y - 1 };
+  const bottom: Coordinate = { x, y: y + 1 };
+  const left: Coordinate = { x: x - 1, y };
+  const right: Coordinate = { x: x + 1, y };
+  return [top, bottom, left, right].some((adjacentCoordinate) => {
+    return bombedCoordinateSet.has(adjacentCoordinate);
+  });
 };
 
 /**

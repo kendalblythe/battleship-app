@@ -1,10 +1,10 @@
 import { Coordinate, Game, Grid } from '../types';
+import { dropArtificialIntelligentBomb } from './ai';
 import { getGridConfig } from './config';
 import { EngineErrorType, createEngineError } from './error';
 import {
   createGrid,
-  dropBomb as gridDropBomb,
-  dropRandomOrTargetedBomb,
+  dropBomb,
   validateGridMatchGridConfig,
   validateGridShipCoordinates,
   isAllShipsSunk,
@@ -40,16 +40,16 @@ export const startGame = (playerGrid: Grid): Game => {
   playerGrid.playerNum = playerNum;
   opponentGrid.playerNum = opponentPlayerNum;
 
-  // drop random bomb on player grid if opponent 1st player
+  // drop opponent bomb on player grid if opponent 1st player
   if (opponentPlayerNum === 1) {
-    dropRandomOrTargetedBomb(playerGrid);
+    dropArtificialIntelligentBomb(playerGrid);
   }
 
   return { playerGrid, opponentGrid } as Game;
 };
 
 /**
- * Drops a bomb on the game opponent grid at the specified coordinate..
+ * Drops a player bomb on the opponent grid at the specified coordinate..
  * @param game Game
  * @param coordinate Coordinate
  * @throws {EngineError} [
@@ -57,7 +57,7 @@ export const startGame = (playerGrid: Grid): Game => {
  *   EngineErrorType.invalidBombCoordinate,
  * ]
  */
-export const dropBomb = (game: Game, coordinate: Coordinate): void => {
+export const dropPlayerBomb = (game: Game, coordinate: Coordinate): void => {
   const { playerGrid, opponentGrid } = game;
 
   // validate game not over
@@ -66,7 +66,7 @@ export const dropBomb = (game: Game, coordinate: Coordinate): void => {
   }
 
   // drop bomb
-  gridDropBomb(opponentGrid, coordinate);
+  dropBomb(opponentGrid, coordinate);
 
   // determine if game over
   if (isAllShipsSunk(opponentGrid)) {
@@ -74,7 +74,7 @@ export const dropBomb = (game: Game, coordinate: Coordinate): void => {
     game.winningPlayerNum = playerGrid.playerNum;
   } else {
     // game not over - drop opponent bomb
-    dropRandomOrTargetedBomb(playerGrid);
+    dropArtificialIntelligentBomb(playerGrid);
 
     // determine if game over
     if (isAllShipsSunk(playerGrid)) {
