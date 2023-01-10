@@ -1,16 +1,14 @@
-@import '../../styles/themes';
-
 .oceanGrid {
   display: inline-block;
   position: relative;
 }
 
 .oceanGrid > .table {
-  border: 1px solid var(--battleship-table-border-color);
+  border: 1px solid var(--battleship-table-bd);
 }
 
 .oceanGrid > .table > .tbody > .tr > div {
-  border: 1px solid var(--battleship-table-border-color);
+  border: 1px solid var(--battleship-table-bd);
 }
 
 .oceanGrid.small > .table > .tbody > .tr > div {

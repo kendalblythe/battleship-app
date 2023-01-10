@@ -1,10 +1,10 @@
-@import '../../styles/themes';
-
 .gamePage {
   display: flex;
   flex-direction: column;
   height: 100%;
   position: relative;
+  color: var(--battleship-page-fg);
+  background-color: var(--battleship-page-bg);
 }
 
 .gamePage > header {
@@ -13,7 +13,7 @@
   box-sizing: border-box;
   padding-block-end: 0.75rem;
   margin-block-end: 1rem;
-  border-block-end: 1px solid var(--battleship-page-border-color);
+  border-block-end: 1px solid var(--battleship-page-bd);
 }
 
 .gamePage > header > * {

@@ -1,11 +1,10 @@
-@import '../../styles/themes';
-
 .configurationPage {
   display: flex;
   flex-direction: column;
   height: 100%;
   position: relative;
-  background-color: var(--battleship-page-background-color);
+  color: var(--battleship-page-fg);
+  background-color: var(--battleship-page-bg);
 }
 
 .configurationPage > header {
@@ -14,7 +13,7 @@
   box-sizing: border-box;
   padding-block-end: 0.75rem;
   margin-block-end: 1rem;
-  border-block-end: 1px solid var(--battleship-page-border-color);
+  border-block-end: 1px solid var(--battleship-page-bd);
 }
 
 .configurationPage > header > * {

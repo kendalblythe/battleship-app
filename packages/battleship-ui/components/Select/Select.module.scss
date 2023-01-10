@@ -1,21 +1,24 @@
-@import '../../styles/themes';
+@import '../../styles/variables';
 
 .select {
-  border-color: var(--battleship-select-border-color);
+  color: var(--battleship-select-fg);
+  background: var(--battleship-select-bg) var(--battleship-select-svg) right 0.75rem center/8px 10px
+    no-repeat;
+  border-color: var(--battleship-select-bd);
   border-radius: 0;
   border-width: 1px;
   border-style: solid;
   outline: none;
+  padding-inline-end: 1.75rem;
 }
 
-.select:hover,
+.select:hover {
+  color: var(--battleship-select-hover-fg);
+  background-color: var(--battleship-select-hover-bg);
+  border-color: var(--battleship-select-hover-bd);
+}
+
 .select:focus {
-  border-color: var(--battleship-select-outline-color);
-  outline: 1px solid var(--battleship-select-outline-color);
-}
-
-// Remove unnecessary outline in Firefox
-.select:-moz-focusring {
-  color: transparent;
-  text-shadow: 0 0 0 var(--battleship-select-focusring-text-shadow-color);
+  outline: 1px dotted var(--battleship-select-outline);
+  outline-offset: calc(-1 * $focus-width - 2px);
 }

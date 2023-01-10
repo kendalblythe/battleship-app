@@ -1,61 +1,116 @@
 @use 'sass:map';
+@import 'functions';
 @import 'mixins';
 @import 'variables';
 
-// blue/light theme
+// light theme
 
-$theme-map-blue-light: (
-  --battleship-page-background-color: $white,
-  --battleship-page-border-color: $light-border-color,
-  --battleship-page-heading-color: $blue-primary-color,
+$theme-map-light: (
+  --battleship-page-fg: $black,
+  --battleship-page-heading-fg: $dark-blue,
+  --battleship-page-bg: $white,
+  --battleship-page-bd: $page-light-bd,
 
-  --battleship-button-background-color: $white,
-  --battleship-button-background-color-hover: $lightest_gray,
-  --battleship-button-border-color: $light-border-color,
-  --battleship-button-outline-color: $light-outline-color,
+  --battleship-button-fg: $black,
+  --battleship-button-bg: rgba(120, 132, 151, 0.08),
+  --battleship-button-bd: $button-light-bd,
+  --battleship-button-hover-fg: $black,
+  --battleship-button-hover-bg: rgba(120, 132, 151, 0.2),
+  --battleship-button-hover-bd: $button-light-bd,
+  --battleship-button-active-fg: $black,
+  --battleship-button-active-bg: rgba(120, 132, 151, 0.25),
+  --battleship-button-active-bd: $button-light-bd,
+  --battleship-button-outline: $outline-light-bg,
 
-  --battleship-primary-button-background-color: $blue-primary-color,
-  --battleship-primary-button-background-color-hover: lighten($blue-primary-color, 5%),
-  --battleship-primary-button-border-color: $blue-primary-color,
-  --battleship-primary-button-border-color-hover: lighten($blue-primary-color, 5%),
-  --battleship-primary-button-color: $white,
+  --battleship-primary-button-fg: $white,
+  --battleship-primary-button-bg: $primary-button-light-bg,
+  --battleship-primary-button-bd: $primary-button-light-bd,
+  --battleship-primary-button-hover-fg: rgba(255, 255, 255, 0.8),
+  --battleship-primary-button-hover-bg: $primary-button-light-bg,
+  --battleship-primary-button-hover-bd: $primary-button-light-bd,
+  --battleship-primary-button-active-fg: rgba(255, 255, 255, 0.6),
+  --battleship-primary-button-active-bg: $primary-button-light-bg,
+  --battleship-primary-button-active-bd: $primary-button-light-bd,
+  --battleship-primary-button-outline: $white,
 
-  --battleship-select-border-color: $light-border-color,
-  --battleship-select-outline-color: $light-outline-color,
-  --battleship-select-focusring-text-shadow-color: $black,
+  --battleship-select-fg: $black,
+  --battleship-select-bg: $white,
+  --battleship-select-bd: $page-light-bd,
+  --battleship-select-hover-fg: $black,
+  --battleship-select-hover-bg: $lighter-gray,
+  --battleship-select-hover-bd: $page-light-bd,
+  --battleship-select-svg: getSelectBackgroundSvgUrl('000'),
+  --battleship-select-outline: $outline-light-bg,
 
-  --battleship-bombed-hit-color: $red,
-  --battleship-bombed-miss-color: $gray,
+  --battleship-bombed-hit-bg: $red,
+  --battleship-bombed-miss-bg: $gray,
 
-  --battleship-table-border-color: $light-border-color,
-  --battleship-table-header-cell-color: $blue-primary-color,
-  --battleship-table-header-cell-background-color: $lightest_gray,
-  --battleship-table-active-cell-background-color: $lightest_gray,
+  --battleship-table-bd: $page-light-bd,
+  --battleship-table-header-cell-fg: $dark-blue,
+  --battleship-table-header-cell-bg: $lightest-gray,
+  --battleship-table-active-cell-bg: $lightest-gray,
 
-  --battleship-ship-background-color: rgba($blue-primary-color, 0.2),
-  --battleship-ship-border-color: $blue-primary-color,
+  --battleship-ship-bg: rgba($dark-blue, 0.2),
+  --battleship-ship-bd: $dark-blue,
 );
 
-:root.battleship-blue-light-theme {
-  @include spread-map($theme-map-blue-light);
+:root {
+  @include spread-map($theme-map-light);
 }
 
-// purple/light theme
+// dark theme
 
-$theme-map-purple-light: map.merge(
-  $theme-map-blue-light,
-  (
-    --battleship-page-heading-color: $purple-primary-color,
-    --battleship-primary-button-background-color: $purple-primary-color,
-    --battleship-primary-button-background-color-hover: lighten($purple-primary-color, 5%),
-    --battleship-primary-button-border-color: $purple-primary-color,
-    --battleship-primary-button-border-color-hover: lighten($purple-primary-color, 5%),
-    --battleship-table-header-cell-color: $purple-primary-color,
-    --battleship-ship-background-color: rgba($purple-primary-color, 0.2),
-    --battleship-ship-border-color: $purple-primary-color,
-  )
+$theme-map-dark: (
+  --battleship-page-fg: $white,
+  --battleship-page-heading-fg: $white,
+  --battleship-page-bg: $darkest-blue,
+  --battleship-page-bd: $page-light-bd,
+
+  --battleship-button-fg: $white,
+  --battleship-button-bg: rgba(159, 182, 198, 0.08),
+  --battleship-button-bd: $button-dark-bd,
+  --battleship-button-hover-fg: $white,
+  --battleship-button-hover-bg: rgba(159, 182, 198, 0.2),
+  --battleship-button-hover-bd: $button-dark-bd,
+  --battleship-button-active-fg: $white,
+  --battleship-button-active-bg: rgba(159, 182, 198, 0.25),
+  --battleship-button-active-bd: $button-dark-bd,
+  --battleship-button-outline: $lightest-blue,
+
+  --battleship-primary-button-fg: $lightest-blue,
+  --battleship-primary-button-bg: rgba(69, 176, 252, 0.1),
+  --battleship-primary-button-bd: $lightest-blue,
+  --battleship-primary-button-hover-fg: $lightest-blue,
+  --battleship-primary-button-hover-bg: rgba(69, 176, 252, 0.2),
+  --battleship-primary-button-hover-bd: $lightest-blue,
+  --battleship-primary-button-active-fg: $lightest-blue,
+  --battleship-primary-button-active-bg: rgba(69, 176, 252, 0.25),
+  --battleship-primary-button-active-bd: $lightest-blue,
+  --battleship-primary-button-outline: $lightest-blue,
+
+  --battleship-select-fg: $white,
+  --battleship-select-bg: rgba(159, 182, 198, 0.08),
+  --battleship-select-bd: $button-dark-bd,
+  --battleship-select-hover-fg: $white,
+  --battleship-select-hover-bg: rgba(159, 182, 198, 0.2),
+  --battleship-select-hover-bd: $button-dark-bd,
+  --battleship-select-svg: getSelectBackgroundSvgUrl('fff'),
+  --battleship-select-outline: $lightest-blue,
+
+  --battleship-bombed-hit-bg: $red,
+  --battleship-bombed-miss-bg: $lighter-gray,
+
+  --battleship-table-bd: $page-light-bd,
+  --battleship-table-header-cell-fg: $white,
+  --battleship-table-header-cell-bg: $darker-blue,
+  --battleship-table-active-cell-bg: $darker-blue,
+
+  --battleship-ship-bg: rgba($white, 0.8),
+  --battleship-ship-bd: $lightest-blue,
 );
 
-:root.battleship-purple-light-theme {
-  @include spread-map($theme-map-purple-light);
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include spread-map($theme-map-dark);
+  }
 }

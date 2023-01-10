@@ -1,38 +1,53 @@
-@import '../../styles/themes';
+@import '../../styles/variables';
 
 .button {
-  cursor: pointer;
-  white-space: nowrap;
-  border-color: var(--battleship-button-border-color);
+  color: var(--battleship-button-fg);
+  background-color: var(--battleship-button-bg);
+  border-color: var(--battleship-button-bd);
   border-radius: 0;
   border-width: 1px;
   border-style: solid;
   outline: none;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-.button:hover,
-.button:focus {
-  background-color: var(--battleship-button-background-color-hover);
-  border-color: var(--battleship-button-outline-color);
-  outline: 1px solid var(--battleship-button-outline-color);
+.button:hover {
+  color: var(--battleship-button-hover-fg);
+  background-color: var(--battleship-button-hover-bg);
+  border-color: var(--battleship-button-hover-bd);
 }
 
 .button:active {
-  background-color: var(--battleship-button-background-color);
+  color: var(--battleship-button-active-fg);
+  background-color: var(--battleship-button-active-bg);
+  border-color: var(--battleship-button-active-bd);
+}
+
+.button:focus {
+  outline: 1px dotted var(--battleship-button-outline);
+  outline-offset: calc(-1 * $focus-width - 2px);
 }
 
 .button.primary {
-  background-color: var(--battleship-primary-button-background-color);
-  border-color: var(--battleship-primary-button-border-color);
-  color: var(--battleship-primary-button-color);
+  color: var(--battleship-primary-button-fg);
+  background-color: var(--battleship-primary-button-bg);
+  border-color: var(--battleship-primary-button-bd);
 }
 
-.button.primary:hover,
-.button.primary:focus {
-  background-color: var(--battleship-primary-button-background-color-hover);
-  border-color: var(--battleship-primary-button-border-color-hover);
+.button.primary:hover {
+  color: var(--battleship-primary-button-hover-fg);
+  background-color: var(--battleship-primary-button-hover-bg);
+  border-color: var(--battleship-primary-button-hover-bd);
 }
 
 .button.primary:active {
-  background-color: var(--battleship-primary-button-background-color);
+  color: var(--battleship-primary-button-active-fg);
+  background-color: var(--battleship-primary-button-active-bg);
+  border-color: var(--battleship-primary-button-active-bd);
+}
+
+.button.primary:focus {
+  outline: 1px dotted var(--battleship-primary-button-outline);
+  outline-offset: calc(-1 * $focus-width - 2px);
 }
