@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { createGrid, getGridConfigs, startGame } from 'battleship-engine/api';
 import { Game } from 'battleship-engine/types';
-import { Button, ButtonVariant } from '../Button';
-import { OceanGrid, OceanGridDisplaySize } from '../OceanGrid';
-import { PageHeading } from '../PageHeading';
-import { Select } from '../Select/Select';
-import { Spacer } from '../Spacer';
+import { Button, ButtonVariant } from '../../components/Button';
+import { OceanGrid, OceanGridDisplaySize } from '../../components/OceanGrid';
+import { PageHeading } from '../../components/PageHeading';
+import { Select } from '../../components/Select';
+import { Spacer } from '../../components/Spacer';
 import { useTranslate } from '../../locales';
-import { getGridConfigLabel } from '../utils';
+import { getGridConfigLabel } from '../../utils';
 import styles from './ConfigurationPage.module.scss';
 
 export interface ConfigurationPageProps {

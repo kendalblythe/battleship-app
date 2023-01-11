@@ -5,13 +5,10 @@ import { Game } from 'battleship-engine/types';
 
 // Dynamic import with ssr = false resolves React hydration error.
 // https://stackoverflow.com/questions/66374123/warning-text-content-did-not-match-server-im-out-client-im-in-div
-const ConfigurationPage = dynamic(
-  () => import('battleship-ui/components/ConfigurationPage/ConfigurationPage'),
-  {
-    ssr: false,
-  }
-);
-const GamePage = dynamic(() => import('battleship-ui/components/GamePage/GamePage'), {
+const ConfigurationPage = dynamic(() => import('battleship-ui/pages/ConfigurationPage'), {
+  ssr: false,
+});
+const GamePage = dynamic(() => import('battleship-ui/pages/GamePage'), {
   ssr: false,
 });
 

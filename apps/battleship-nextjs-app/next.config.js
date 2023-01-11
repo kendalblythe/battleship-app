@@ -1,5 +1,4 @@
-
-import nextTranspileModules from "next-transpile-modules";
+import nextTranspileModules from 'next-transpile-modules';
 
 const withTM = nextTranspileModules(['battleship-engine', 'battleship-ui']);
 

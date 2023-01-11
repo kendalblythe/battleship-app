@@ -1,6 +1,6 @@
 import { BombedCoordinate, Coordinate, Grid, GridConfig, GridSize, Ship } from '../types';
 import { getGridConfig } from './config';
-import { CoordinatePair, CoordinateSet, coordinateToString } from './coordinate';
+import { CoordinateSet, coordinateToString } from './coordinate';
 import { EngineErrorType, createEngineError } from './error';
 import { randomBoolean, randomInt, shuffle } from './random';
 

@@ -1,6 +1,5 @@
 import { BombedCoordinate, Coordinate, Grid } from '../types';
 import { CoordinatePair, CoordinateSet } from './coordinate';
-import { createEngineError, EngineErrorType } from './error';
 import {
   dropBomb,
   getAvailableCoordinates,

@@ -11,7 +11,7 @@ import {
   getRowLabel,
   getShipLabel,
   getSunkShipIds,
-} from '../utils';
+} from '../../utils';
 import styles from './OceanGrid.module.scss';
 
 export interface OceanGridProps {

@@ -1,11 +1,11 @@
 import { ReactElement, useLayoutEffect, useRef } from 'react';
 import { Game, Grid } from 'battleship-engine/types';
-import { Button, ButtonVariant } from '../Button';
-import { OceanGrid, OceanGridDisplaySize } from '../OceanGrid';
-import { PageHeading } from '../PageHeading';
-import { Spacer } from '../Spacer';
+import { Button, ButtonVariant } from '../../components/Button';
+import { OceanGrid, OceanGridDisplaySize } from '../../components/OceanGrid';
+import { PageHeading } from '../../components/PageHeading';
+import { Spacer } from '../../components/Spacer';
 import { useTranslate } from '../../locales';
-import { getShipLabel, getSunkShipIds } from '../utils';
+import { getShipLabel, getSunkShipIds } from '../../utils';
 import styles from './GamePage.module.scss';
 import { dropPlayerBomb } from 'battleship-engine/api';
 

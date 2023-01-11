@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Game } from 'battleship-engine/types';
-import { ConfigurationPage, GamePage } from 'battleship-ui/components';
+import { ConfigurationPage, GamePage } from 'battleship-ui/pages';
 
 export const App = () => {
   const [gridConfigId, setGridConfigId] = useState<string>();
