@@ -1,5 +1,5 @@
 import { ReactElement, RefObject } from 'react';
-import cx from 'classnames';
+import { clsx } from 'clsx';
 import { BombedCoordinate, Grid } from 'battleship-engine/types';
 import { PlacedShip } from './PlacedShip';
 import { TableCell } from './TableCell';
@@ -96,7 +96,7 @@ export const OceanGrid = ({
   };
 
   return (
-    <div className={cx(styles.oceanGrid, styles[displaySize], className)}>
+    <div className={clsx(styles.oceanGrid, styles[displaySize], className)}>
       <div ref={tableRef} className={styles.table}>
         <div className={styles.tbody}>{createRows()}</div>
       </div>

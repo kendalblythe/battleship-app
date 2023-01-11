@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react';
-import cx from 'classnames';
+import { clsx } from 'clsx';
 import styles from './Button.module.scss';
 
 export interface ButtonProps {
@@ -10,7 +10,7 @@ export interface ButtonProps {
 
 export const Button = ({ text, variant, onClick }: ButtonProps) => (
   <button
-    className={cx(styles.button, !!variant && styles[variant])}
+    className={clsx(styles.button, !!variant && styles[variant])}
     type="button"
     onClick={(event): void => onClick?.(event)}
   >

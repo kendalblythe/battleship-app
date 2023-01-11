@@ -1,5 +1,5 @@
 import { KeyboardEvent } from 'react';
-import cx from 'classnames';
+import { clsx } from 'clsx';
 import { BombedCoordinate } from 'battleship-engine/types';
 import styles from './TableCell.module.scss';
 
@@ -27,8 +27,8 @@ export const TableCell = ({
   shipName,
   onDropBomb,
 }: TableCellProps) => {
-  const cellClassNames = cx(styles.tableCell, styles[displaySize]);
-  const headerClassNames = cx(cellClassNames, styles.headerCell);
+  const cellClassNames = clsx(styles.tableCell, styles[displaySize]);
+  const headerClassNames = clsx(cellClassNames, styles.headerCell);
 
   const onKeyDown = (event: KeyboardEvent): void => {
     const getRowButtons = (): Array<HTMLButtonElement> =>
