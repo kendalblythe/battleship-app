@@ -1,4 +1,4 @@
-# Battleship UI (React)
+# Battleship App
 
 ## Introduction
 
@@ -6,12 +6,12 @@
 strategy/guessing game of naval combat. This project is a monorepo containing the following apps and
 packages for implementing the Battleship web application.
 
-Apps
+### Apps
 
 - battleship-nextjs-app
 - battleship-react-app
 
-Packages
+### Packages
 
 - battleship-engine
 - battleship-ui
