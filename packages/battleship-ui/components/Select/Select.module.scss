@@ -2,7 +2,7 @@
 
 .select {
   color: var(--battleship-select-fg);
-  background: var(--battleship-select-bg) var(--battleship-select-svg) right 0.75rem center/8px 10px
+  background: var(--battleship-select-bg) var(--battleship-select-svg) right 0.75rem center/0.625rem
     no-repeat;
   border-color: var(--battleship-select-bd);
   border-radius: 0;
@@ -10,6 +10,7 @@
   border-style: solid;
   outline: none;
   padding-inline-end: 1.75rem;
+  cursor: pointer;
 }
 
 .select:hover {
@@ -21,4 +22,9 @@
 .select:focus {
   outline: 1px dotted var(--battleship-select-outline);
   outline-offset: calc(-1 * $focus-width - 2px);
+}
+
+.select > option {
+  color: var(--battleship-select-option-fg);
+  background-color: var(--battleship-select-option-bg);
 }

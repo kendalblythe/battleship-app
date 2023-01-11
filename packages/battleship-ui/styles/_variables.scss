@@ -1,4 +1,3 @@
-// base color variables
 $white: #fff;
 $black: #000;
 $red: #f00;
@@ -6,17 +5,12 @@ $gray: #888;
 $lighter-gray: #dfdfdf;
 $lightest-gray: #eee;
 $lightest-blue: #45b0fc;
+$lighter-blue: #0368b0;
 $dark-blue: #024e85;
 $darker-blue: #042c49;
 $darkest-blue: #021727;
 
-// common color variables
-$page-light-bd: $lighter-gray;
-$outline-light-bg: hsl(205, 97%, 35%); // #0368b0
-$button-light-bd: hsl(216, 13%, 53%); // #788497
-$button-dark-bd: hsl(205, 25%, 70%); // #9fb6c6
-$primary-button-light-bg: $dark-blue;
-$primary-button-light-bd: $white;
+$element-light-bd: #788497;
+$element-dark-bd: #9fb6c6;
 
-// common non-color variables
 $focus-width: 1px;
