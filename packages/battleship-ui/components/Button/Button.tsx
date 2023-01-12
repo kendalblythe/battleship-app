@@ -1,23 +1,24 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, ReactNode } from 'react';
 import { clsx } from 'clsx';
 import styles from './Button.module.scss';
 
 export interface ButtonProps {
-  text: string;
+  children: ReactNode;
+  title?: string;
   variant?: ButtonVariant;
+  className?: string;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const Button = ({ text, variant, onClick }: ButtonProps) => (
+export const Button = ({ children, title, variant, className, onClick }: ButtonProps) => (
   <button
-    className={clsx(styles.button, !!variant && styles[variant])}
+    className={clsx(styles.button, !!variant && styles[variant], className)}
     type="button"
+    title={title}
     onClick={(event): void => onClick?.(event)}
   >
-    {text}
+    {children}
   </button>
 );
 
-export enum ButtonVariant {
-  Primary = 'primary',
-}
+export type ButtonVariant = 'primary' | 'icon';

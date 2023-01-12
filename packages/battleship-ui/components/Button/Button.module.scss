@@ -51,3 +51,27 @@
   outline: 1px dotted var(--battleship-primary-button-outline);
   outline-offset: calc(-1 * $focus-width - 2px);
 }
+
+.button.icon {
+  color: transparent;
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: 0.125rem;
+}
+
+.button.icon:hover {
+  color: transparent;
+  background-color: var(--battleship-button-hover-bg);
+  border-color: transparent;
+}
+
+.button.icon:active {
+  color: transparent;
+  background-color: var(--battleship-button-active-bg);
+  border-color: transparent;
+}
+
+.button.icon:focus {
+  outline: 1px dotted var(--battleship-button-outline);
+  outline-offset: calc(-1 * $focus-width - 2px);
+}

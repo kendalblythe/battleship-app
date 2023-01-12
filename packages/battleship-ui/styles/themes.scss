@@ -1,5 +1,5 @@
-@import 'functions';
 @import 'mixins';
+@import 'svgs';
 @import 'variables';
 
 // light theme
@@ -38,7 +38,6 @@ $theme-map-light: (
   --battleship-select-hover-fg: $black,
   --battleship-select-hover-bg: rgba($element-light-bd, 0.2),
   --battleship-select-hover-bd: $element-light-bd,
-  --battleship-select-svg: getSelectBackgroundSvgUrl('000'),
   --battleship-select-outline: $lighter-blue,
   --battleship-select-option-fg: $black,
   --battleship-select-option-bg: $white,
@@ -53,6 +52,10 @@ $theme-map-light: (
 
   --battleship-ship-bg: rgba($dark-blue, 0.2),
   --battleship-ship-bd: $dark-blue,
+
+  --battleship-dropdown-svg: dropdownSvg('000'),
+  --battleship-shuffle-svg: shuffleSvg('000'),
+  --battleship-play-svg: playSvg('000'),
 );
 
 :root {
@@ -95,7 +98,6 @@ $theme-map-dark: (
   --battleship-select-hover-fg: $white,
   --battleship-select-hover-bg: rgba($element-dark-bd, 0.2),
   --battleship-select-hover-bd: $element-dark-bd,
-  --battleship-select-svg: getSelectBackgroundSvgUrl('fff'),
   --battleship-select-outline: $lightest-blue,
   --battleship-select-option-fg: $white,
   --battleship-select-option-bg: $darkest-blue,
@@ -110,6 +112,10 @@ $theme-map-dark: (
 
   --battleship-ship-bg: rgba($white, 0.8),
   --battleship-ship-bd: $lightest-blue,
+
+  --battleship-dropdown-svg: dropdownSvg('fff'),
+  --battleship-shuffle-svg: shuffleSvg('fff'),
+  --battleship-play-svg: playSvg('fff'),
 );
 
 @media (prefers-color-scheme: dark) {

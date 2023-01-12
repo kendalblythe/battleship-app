@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { createGrid, getGridConfigs, startGame } from 'battleship-engine/api';
 import { Game } from 'battleship-engine/types';
-import { Button, ButtonVariant } from '../../components/Button';
-import { OceanGrid, OceanGridDisplaySize } from '../../components/OceanGrid';
+import { Button } from '../../components/Button';
+import { OceanGrid } from '../../components/OceanGrid';
 import { PageHeading } from '../../components/PageHeading';
 import { Select } from '../../components/Select';
 import { Spacer } from '../../components/Spacer';
+import { useWindowSize } from '../../hooks/useWindowSize';
 import { useTranslate } from '../../locales';
 import { getGridConfigLabel } from '../../utils';
 import styles from './ConfigurationPage.module.scss';
@@ -20,6 +21,8 @@ export const ConfigurationPage = ({
   onStartGame,
 }: ConfigurationPageProps) => {
   const t = useTranslate();
+  const { width, height } = useWindowSize();
+  const minWindowSizeDimension = Math.min(width, height);
 
   const [gridConfigs] = useState(getGridConfigs());
   const [gridConfigId, setGridConfigId] = useState(initialGridConfigId ?? gridConfigs[0].id);
@@ -32,6 +35,9 @@ export const ConfigurationPage = ({
     label: getGridConfigLabel(gridConfig.id, t),
   }));
 
+  const onShuffleButtonClick = () => setGrid(createGrid(gridConfigId));
+  const onPlayButtonClick = () => onStartGame(startGame(grid));
+
   return (
     <div className={styles.configurationPage}>
       <header>
@@ -42,21 +48,34 @@ export const ConfigurationPage = ({
           onChange={({ value }) => setGridConfigId(value)}
         />
         <Spacer />
+        <Button className={styles.shuffleButton} onClick={onShuffleButtonClick}>
+          {t('configurationPage.shuffleShips.button.label')}
+        </Button>
         <Button
-          text={t('configurationPage.shuffleShips.button.label')}
-          onClick={() => setGrid(createGrid(gridConfigId))}
-        />
+          className={styles.shuffleIconButton}
+          variant="icon"
+          title={t('configurationPage.shuffleShips.button.label')}
+          onClick={onShuffleButtonClick}
+        >
+          <img className={styles.shuffleIcon} />
+        </Button>
+        <Button className={styles.playButton} variant="primary" onClick={onPlayButtonClick}>
+          {t('configurationPage.playGame.button.label')}
+        </Button>
         <Button
-          text={t('configurationPage.startGame.button.label')}
-          variant={ButtonVariant.Primary}
-          onClick={() => onStartGame(startGame(grid))}
-        />
+          className={styles.playIconButton}
+          variant="icon"
+          title={t('configurationPage.playGame.button.label')}
+          onClick={onPlayButtonClick}
+        >
+          <img className={styles.playIcon} />
+        </Button>
       </header>
       <main>
         <OceanGrid
           className={styles.oceanGrid}
           grid={grid}
-          displaySize={OceanGridDisplaySize.Medium}
+          displaySize={minWindowSizeDimension >= 512 ? 'medium' : 'small'}
         />
       </main>
     </div>

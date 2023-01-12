@@ -1,3 +1,0 @@
-@function getSelectBackgroundSvgUrl($fillColor) {
-  @return url("data:image/svg+xml,<svg width='14' height='9' viewBox='0 0 14 9' xmlns='http://www.w3.org/2000/svg'><path fill='%23#{$fillColor}' d='M6.6 8.4L13.4 0H.2l6.4 8.4z'/></svg>");
-}

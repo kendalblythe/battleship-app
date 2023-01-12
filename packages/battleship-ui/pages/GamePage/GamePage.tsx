@@ -1,9 +1,10 @@
 import { ReactElement, useLayoutEffect, useRef } from 'react';
 import { Game, Grid } from 'battleship-engine/types';
-import { Button, ButtonVariant } from '../../components/Button';
+import { Button } from '../../components/Button';
 import { OceanGrid, OceanGridDisplaySize } from '../../components/OceanGrid';
 import { PageHeading } from '../../components/PageHeading';
 import { Spacer } from '../../components/Spacer';
+import useWindowSize from '../../hooks/useWindowSize';
 import { useTranslate } from '../../locales';
 import { getShipLabel, getSunkShipIds } from '../../utils';
 import styles from './GamePage.module.scss';
@@ -16,6 +17,8 @@ export interface GamePageProps {
 
 export const GamePage = ({ game, onSetGame }: GamePageProps) => {
   const t = useTranslate();
+  const { width, height } = useWindowSize();
+  const minWindowSizeDimension = Math.min(width, height);
 
   // sync grid container widths with grid table width
   const tableRef = useRef<HTMLTableElement>(null);
@@ -41,13 +44,11 @@ export const GamePage = ({ game, onSetGame }: GamePageProps) => {
     game.winningPlayerNum === game.playerGrid.playerNum ||
     game.winningPlayerNum === game.opponentGrid.playerNum;
 
-  let displaySize;
+  let displaySize: OceanGridDisplaySize;
   if (game.playerGrid.size.x > 8) {
-    displaySize = OceanGridDisplaySize.Small;
-  } else if (game.playerGrid.size.x < 7) {
-    displaySize = OceanGridDisplaySize.Large;
+    displaySize = 'small';
   } else {
-    displaySize = OceanGridDisplaySize.Medium;
+    displaySize = minWindowSizeDimension >= 512 ? 'large' : 'medium';
   }
 
   const getSunkShips = (grid: Grid): ReactElement | null => {
@@ -65,13 +66,9 @@ export const GamePage = ({ game, onSetGame }: GamePageProps) => {
       <header>
         <PageHeading text={gameOver ? t('gamePage.gameOver.title') : t('gamePage.title')} />
         <Spacer />
-        <Button
-          text={
-            gameOver ? t('gamePage.startOver.button.label') : t('gamePage.quitGame.button.label')
-          }
-          variant={ButtonVariant.Primary}
-          onClick={() => onSetGame()}
-        />
+        <Button variant="primary" onClick={() => onSetGame()}>
+          {gameOver ? t('gamePage.startOver.button.label') : t('gamePage.quitGame.button.label')}
+        </Button>
       </header>
       <main>
         <div ref={playerContainerRef} className={styles.verticalLayout}>

@@ -28,7 +28,7 @@ export const OceanGrid = ({
   tableRef,
   grid,
   isOpponentGrid = false,
-  displaySize = OceanGridDisplaySize.Medium,
+  displaySize = 'medium',
   onDropBomb,
 }: OceanGridProps) => {
   const t = useTranslate();
@@ -37,13 +37,13 @@ export const OceanGrid = ({
   // determine cell size based on display size
   let cellSize: number;
   switch (displaySize) {
-    case OceanGridDisplaySize.Small:
+    case 'small':
       cellSize = 32; // 2rem
       break;
-    case OceanGridDisplaySize.Medium:
+    case 'medium':
       cellSize = 40; // 2.5rem
       break;
-    case OceanGridDisplaySize.Large:
+    case 'large':
       cellSize = 48; // 3rem
       break;
   }
@@ -109,8 +109,4 @@ export const OceanGrid = ({
   );
 };
 
-export enum OceanGridDisplaySize {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-}
+export type OceanGridDisplaySize = 'small' | 'medium' | 'large';
