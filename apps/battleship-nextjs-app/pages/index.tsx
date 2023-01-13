@@ -36,3 +36,8 @@ export default function Home() {
     </>
   );
 }
+
+// enable server-side rendering (ssr) to ensure ui components work with ssr
+export async function getServerSideProps() {
+  return { props: {} };
+}
