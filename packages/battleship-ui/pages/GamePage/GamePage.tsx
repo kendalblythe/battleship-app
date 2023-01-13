@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { Game, Grid } from 'battleship-engine/types';
 import { Button } from '../../components/Button';
-import { OceanGrid, OceanGridDisplaySize } from '../../components/OceanGrid';
+import { OceanGrid, GridDisplaySize, getGridWidth } from '../../components/OceanGrid';
 import { PageHeading } from '../../components/PageHeading';
 import { Spacer } from '../../components/Spacer';
 import { useWindowSize, WindowSize } from '../../hooks/useWindowSize';
@@ -18,7 +18,8 @@ export interface GamePageProps {
 export const GamePage = ({ game, onSetGame }: GamePageProps) => {
   const t = useTranslate();
   const windowSize = useWindowSize();
-  const displaySize = getGridDisplaySize(game.playerGrid, windowSize);
+  const { playerGrid, opponentGrid, winningPlayerNum } = game;
+  const displaySize = getGridDisplaySize(playerGrid, windowSize);
 
   const onDropBomb = (x: number, y: number): void => {
     dropPlayerBomb(game, { x, y });
@@ -26,8 +27,7 @@ export const GamePage = ({ game, onSetGame }: GamePageProps) => {
   };
 
   const gameOver =
-    game.winningPlayerNum === game.playerGrid.playerNum ||
-    game.winningPlayerNum === game.opponentGrid.playerNum;
+    winningPlayerNum === playerGrid.playerNum || winningPlayerNum === opponentGrid.playerNum;
 
   const getSunkShips = (grid: Grid): ReactElement | null => {
     const sunkShipIds = getSunkShipIds(grid);
@@ -49,32 +49,42 @@ export const GamePage = ({ game, onSetGame }: GamePageProps) => {
         </Button>
       </header>
       <main>
-        <div className={styles.verticalLayout}>
+        <div
+          className={styles.verticalLayout}
+          style={{
+            width: `${getGridWidth(playerGrid, displaySize)}px`,
+          }}
+        >
           <h3>
             {t('gamePage.playerGrid.header.title')}
-            {game.winningPlayerNum === game.playerGrid.playerNum &&
+            {winningPlayerNum === playerGrid.playerNum &&
               t('gamePage.winnerGrid.header.suffix.title')}
           </h3>
-          <OceanGrid grid={game.playerGrid} displaySize={displaySize} />
-          {getSunkShips(game.playerGrid)}
+          <OceanGrid grid={playerGrid} displaySize={displaySize} />
+          {getSunkShips(playerGrid)}
         </div>
-        <div className={styles.verticalLayout}>
+        <div
+          className={styles.verticalLayout}
+          style={{
+            width: `${getGridWidth(opponentGrid, displaySize)}px`,
+          }}
+        >
           <h3>
             {t('gamePage.opponentGrid.header.title')}
-            {game.winningPlayerNum === game.opponentGrid.playerNum &&
+            {winningPlayerNum === opponentGrid.playerNum &&
               t('gamePage.winnerGrid.header.suffix.title')}
           </h3>
           {gameOver ? (
-            <OceanGrid grid={game.opponentGrid} displaySize={displaySize} />
+            <OceanGrid grid={opponentGrid} displaySize={displaySize} />
           ) : (
             <OceanGrid
-              grid={game.opponentGrid}
+              grid={opponentGrid}
               isOpponentGrid
               displaySize={displaySize}
               onDropBomb={onDropBomb}
             />
           )}
-          {getSunkShips(game.opponentGrid)}
+          {getSunkShips(opponentGrid)}
         </div>
       </main>
     </div>
@@ -83,7 +93,7 @@ export const GamePage = ({ game, onSetGame }: GamePageProps) => {
 
 export default GamePage;
 
-const getGridDisplaySize = (grid: Grid, windowSize: WindowSize): OceanGridDisplaySize => {
+const getGridDisplaySize = (grid: Grid, windowSize: WindowSize): GridDisplaySize => {
   const { width, height } = windowSize;
   const minWindowSizeDimension = Math.min(width, height);
   const isSmallGrid = grid.size.x <= 6;

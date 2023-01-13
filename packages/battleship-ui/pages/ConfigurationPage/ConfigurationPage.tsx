@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { createGrid, getGridConfigs, startGame } from 'battleship-engine/api';
 import { Game, Grid } from 'battleship-engine/types';
 import { Button } from '../../components/Button';
-import { OceanGrid, OceanGridDisplaySize } from '../../components/OceanGrid';
+import { OceanGrid, GridDisplaySize } from '../../components/OceanGrid';
 import { PageHeading } from '../../components/PageHeading';
 import { Select } from '../../components/Select';
 import { Spacer } from '../../components/Spacer';
@@ -83,7 +83,7 @@ export const ConfigurationPage = ({
 
 export default ConfigurationPage;
 
-const getGridDisplaySize = (grid: Grid, windowSize: WindowSize): OceanGridDisplaySize => {
+const getGridDisplaySize = (grid: Grid, windowSize: WindowSize): GridDisplaySize => {
   const { width, height } = windowSize;
   const minWindowSizeDimension = Math.min(width, height);
   const isSmallGrid = grid.size.x <= 6;

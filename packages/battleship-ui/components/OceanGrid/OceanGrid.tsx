@@ -19,7 +19,7 @@ export interface OceanGridProps {
   tableRef?: RefObject<HTMLTableElement>;
   grid: Grid;
   isOpponentGrid?: boolean;
-  displaySize?: OceanGridDisplaySize;
+  displaySize?: GridDisplaySize;
   onDropBomb?: (x: number, y: number) => void;
 }
 
@@ -33,20 +33,7 @@ export const OceanGrid = ({
 }: OceanGridProps) => {
   const t = useTranslate();
   const sunkShipIdSet = new Set(getSunkShipIds(grid));
-
-  // determine cell size based on display size
-  let cellSize: number;
-  switch (displaySize) {
-    case 'small':
-      cellSize = 32; // 2rem
-      break;
-    case 'medium':
-      cellSize = 40; // 2.5rem
-      break;
-    case 'large':
-      cellSize = 48; // 3rem
-      break;
-  }
+  const cellSize = getCellSize(displaySize);
 
   // initialize ship coordinate/label map
   const shipCoordinateLabelMap = new Map<string | null, string>();
@@ -109,4 +96,22 @@ export const OceanGrid = ({
   );
 };
 
-export type OceanGridDisplaySize = 'small' | 'medium' | 'large';
+export type GridDisplaySize = 'small' | 'medium' | 'large';
+
+export const getGridWidth = (grid: Grid, displaySize: GridDisplaySize): number => {
+  const borderSize = 2;
+  const gridColumnCount = grid.size.x + 1;
+  const cellSize = getCellSize(displaySize);
+  return gridColumnCount * cellSize + borderSize;
+};
+
+const getCellSize = (displaySize: GridDisplaySize): number => {
+  switch (displaySize) {
+    case 'small':
+      return 32; // 2rem
+    case 'medium':
+      return 40; // 2.5rem
+    case 'large':
+      return 48; // 3rem
+  }
+};
