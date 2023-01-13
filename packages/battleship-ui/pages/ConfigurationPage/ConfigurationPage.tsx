@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { createGrid, getGridConfigs, startGame } from 'battleship-engine/api';
-import { Game } from 'battleship-engine/types';
+import { Game, Grid } from 'battleship-engine/types';
 import { Button } from '../../components/Button';
-import { OceanGrid } from '../../components/OceanGrid';
+import { OceanGrid, OceanGridDisplaySize } from '../../components/OceanGrid';
 import { PageHeading } from '../../components/PageHeading';
 import { Select } from '../../components/Select';
 import { Spacer } from '../../components/Spacer';
-import { useWindowSize } from '../../hooks/useWindowSize';
+import { useWindowSize, WindowSize } from '../../hooks/useWindowSize';
 import { useTranslate } from '../../locales';
 import { getGridConfigLabel } from '../../utils';
 import styles from './ConfigurationPage.module.scss';
@@ -21,8 +21,7 @@ export const ConfigurationPage = ({
   onStartGame,
 }: ConfigurationPageProps) => {
   const t = useTranslate();
-  const { width, height } = useWindowSize();
-  const minWindowSizeDimension = Math.min(width, height);
+  const windowSize = useWindowSize();
 
   const [gridConfigs] = useState(getGridConfigs());
   const [gridConfigId, setGridConfigId] = useState(initialGridConfigId ?? gridConfigs[0].id);
@@ -75,7 +74,7 @@ export const ConfigurationPage = ({
         <OceanGrid
           className={styles.oceanGrid}
           grid={grid}
-          displaySize={minWindowSizeDimension >= 512 ? 'medium' : 'small'}
+          displaySize={getGridDisplaySize(grid, windowSize)}
         />
       </main>
     </div>
@@ -83,3 +82,16 @@ export const ConfigurationPage = ({
 };
 
 export default ConfigurationPage;
+
+const getGridDisplaySize = (grid: Grid, windowSize: WindowSize): OceanGridDisplaySize => {
+  const { width, height } = windowSize;
+  const minWindowSizeDimension = Math.min(width, height);
+  const isSmallGrid = grid.size.x <= 6;
+  if (minWindowSizeDimension <= 512) {
+    return isSmallGrid ? 'medium' : 'small';
+  } else if (minWindowSizeDimension <= 768) {
+    return isSmallGrid ? 'large' : 'medium';
+  } else {
+    return 'large';
+  }
+};

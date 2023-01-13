@@ -1,10 +1,10 @@
-import { ReactElement, useLayoutEffect, useRef } from 'react';
+import { ReactElement } from 'react';
 import { Game, Grid } from 'battleship-engine/types';
 import { Button } from '../../components/Button';
 import { OceanGrid, OceanGridDisplaySize } from '../../components/OceanGrid';
 import { PageHeading } from '../../components/PageHeading';
 import { Spacer } from '../../components/Spacer';
-import useWindowSize from '../../hooks/useWindowSize';
+import { useWindowSize, WindowSize } from '../../hooks/useWindowSize';
 import { useTranslate } from '../../locales';
 import { getShipLabel, getSunkShipIds } from '../../utils';
 import styles from './GamePage.module.scss';
@@ -17,23 +17,8 @@ export interface GamePageProps {
 
 export const GamePage = ({ game, onSetGame }: GamePageProps) => {
   const t = useTranslate();
-  const { width, height } = useWindowSize();
-  const minWindowSizeDimension = Math.min(width, height);
-
-  // sync grid container widths with grid table width
-  const tableRef = useRef<HTMLTableElement>(null);
-  const playerContainerRef = useRef<HTMLDivElement>(null);
-  const opponentContainerRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    if (tableRef.current && playerContainerRef.current && opponentContainerRef.current) {
-      const width = tableRef.current.offsetWidth;
-      if (width > 0) {
-        playerContainerRef.current.style.width = `${width}px`;
-        opponentContainerRef.current.style.width = `${width}px`;
-      }
-    }
-  }, [tableRef, playerContainerRef, opponentContainerRef]);
+  const windowSize = useWindowSize();
+  const displaySize = getGridDisplaySize(game.playerGrid, windowSize);
 
   const onDropBomb = (x: number, y: number): void => {
     dropPlayerBomb(game, { x, y });
@@ -43,13 +28,6 @@ export const GamePage = ({ game, onSetGame }: GamePageProps) => {
   const gameOver =
     game.winningPlayerNum === game.playerGrid.playerNum ||
     game.winningPlayerNum === game.opponentGrid.playerNum;
-
-  let displaySize: OceanGridDisplaySize;
-  if (game.playerGrid.size.x > 8) {
-    displaySize = 'small';
-  } else {
-    displaySize = minWindowSizeDimension >= 512 ? 'large' : 'medium';
-  }
 
   const getSunkShips = (grid: Grid): ReactElement | null => {
     const sunkShipIds = getSunkShipIds(grid);
@@ -71,16 +49,16 @@ export const GamePage = ({ game, onSetGame }: GamePageProps) => {
         </Button>
       </header>
       <main>
-        <div ref={playerContainerRef} className={styles.verticalLayout}>
+        <div className={styles.verticalLayout}>
           <h3>
             {t('gamePage.playerGrid.header.title')}
             {game.winningPlayerNum === game.playerGrid.playerNum &&
               t('gamePage.winnerGrid.header.suffix.title')}
           </h3>
-          <OceanGrid tableRef={tableRef} grid={game.playerGrid} displaySize={displaySize} />
+          <OceanGrid grid={game.playerGrid} displaySize={displaySize} />
           {getSunkShips(game.playerGrid)}
         </div>
-        <div ref={opponentContainerRef} className={styles.verticalLayout}>
+        <div className={styles.verticalLayout}>
           <h3>
             {t('gamePage.opponentGrid.header.title')}
             {game.winningPlayerNum === game.opponentGrid.playerNum &&
@@ -104,3 +82,16 @@ export const GamePage = ({ game, onSetGame }: GamePageProps) => {
 };
 
 export default GamePage;
+
+const getGridDisplaySize = (grid: Grid, windowSize: WindowSize): OceanGridDisplaySize => {
+  const { width, height } = windowSize;
+  const minWindowSizeDimension = Math.min(width, height);
+  const isSmallGrid = grid.size.x <= 6;
+  if (minWindowSizeDimension <= 512) {
+    return 'small';
+  } else if (minWindowSizeDimension <= 800) {
+    return isSmallGrid ? 'medium' : 'small';
+  } else {
+    return isSmallGrid ? 'large' : 'small';
+  }
+};
