@@ -26,7 +26,7 @@ export default function Home() {
       <Head>
         <title>Battleship Next.js App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="images/favicon.ico" />
+        <link rel="icon" href="/ship.png" />
       </Head>
       {game ? (
         <GamePage game={game} onSetGame={setGame} />
