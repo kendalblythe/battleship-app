@@ -53,9 +53,9 @@ $theme-map-light: (
   --battleship-ship-bg: rgba($dark-blue, 0.2),
   --battleship-ship-bd: $dark-blue,
 
-  --battleship-dropdown-svg: dropdownSvg('000'),
-  --battleship-shuffle-svg: shuffleSvg('000'),
-  --battleship-play-svg: playSvg('000'),
+  --battleship-icon-color: $black,
+
+  --battleship-dropdown-arrow-svg: dropdownArrowSvg($black),
 );
 
 :root {
@@ -113,9 +113,9 @@ $theme-map-dark: (
   --battleship-ship-bg: rgba($white, 0.8),
   --battleship-ship-bd: $lightest-blue,
 
-  --battleship-dropdown-svg: dropdownSvg('fff'),
-  --battleship-shuffle-svg: shuffleSvg('fff'),
-  --battleship-play-svg: playSvg('fff'),
+  --battleship-icon-color: $white,
+
+  --battleship-dropdown-arrow-svg: dropdownArrowSvg($white),
 );
 
 @media (prefers-color-scheme: dark) {

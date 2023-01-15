@@ -44,10 +44,6 @@
   }
 }
 
-.shuffleIcon {
-  content: var(--battleship-shuffle-svg);
-}
-
 @media screen and (max-width: 512px) {
   .playButton {
     display: none;
@@ -60,6 +56,6 @@
   }
 }
 
-.playIcon {
-  content: var(--battleship-play-svg);
+.configurationPage svg {
+  fill: var(--battleship-icon-color);
 }

@@ -6,6 +6,7 @@ import { OceanGrid, GridDisplaySize } from '../../components/OceanGrid';
 import { PageHeading } from '../../components/PageHeading';
 import { Select } from '../../components/Select';
 import { Spacer } from '../../components/Spacer';
+import { PlaySVG, ShuffleSVG } from '../../components/svgs';
 import { useWindowSize, WindowSize } from '../../hooks/useWindowSize';
 import { useTranslate } from '../../locales';
 import { getGridConfigLabel } from '../../utils';
@@ -56,7 +57,7 @@ export const ConfigurationPage = ({
           title={t('configurationPage.shuffleShips.button.label')}
           onClick={onShuffleButtonClick}
         >
-          <img className={styles.shuffleIcon} />
+          <ShuffleSVG />
         </Button>
         <Button className={styles.playButton} variant="primary" onClick={onPlayButtonClick}>
           {t('configurationPage.playGame.button.label')}
@@ -67,7 +68,7 @@ export const ConfigurationPage = ({
           title={t('configurationPage.playGame.button.label')}
           onClick={onPlayButtonClick}
         >
-          <img className={styles.playIcon} />
+          <PlaySVG />
         </Button>
       </header>
       <main>
