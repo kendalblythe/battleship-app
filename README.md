@@ -35,6 +35,7 @@ You can play a game of Battleship here.
 - <a href="https://code.visualstudio.com/">Visual Studio Code</a>
 - <a href="https://eslint.org/">ESLint</a>
 - <a href="https://prettier.io/">Prettier</a>
+- <a href="https://typicode.github.io/husky/">Husky</a>
 - <a href="https://yarnpkg.com/">Yarn</a>
 - <a href="https://yarnpkg.com/features/workspaces/">Yarn workspaces</a>
 - <a href="https://turbo.build/repo">Turborepo</a>
