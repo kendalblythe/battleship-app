@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
+import { useLocalStorageState } from 'battleship-ui/hooks';
 import { Game } from 'battleship-engine/types';
 
 // Dynamic import with ssr = false resolves React hydration error.
@@ -14,12 +15,14 @@ const GamePage = dynamic(() => import('battleship-ui/pages/GamePage'), {
 
 export default function Home() {
   const [gridConfigId, setGridConfigId] = useState<string>();
-  const [game, setGame] = useState<Game>();
+  const [game, setGame] = useLocalStorageState<Game | undefined>(
+    'battleship-nextjs-app-game',
+    undefined
+  );
 
-  const onStartGame = (game: Game) => {
-    setGridConfigId(game.playerGrid.gridConfigId);
-    setGame(game);
-  };
+  useEffect(() => {
+    if (game) setGridConfigId(game.playerGrid.gridConfigId);
+  }, [game]);
 
   return (
     <>
@@ -31,7 +34,7 @@ export default function Home() {
       {game ? (
         <GamePage game={game} onSetGame={setGame} />
       ) : (
-        <ConfigurationPage gridConfigId={gridConfigId} onStartGame={onStartGame} />
+        <ConfigurationPage gridConfigId={gridConfigId} onStartGame={setGame} />
       )}
     </>
   );

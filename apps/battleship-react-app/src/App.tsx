@@ -1,20 +1,24 @@
-import { useState } from 'react';
-import { Game } from 'battleship-engine/types';
+import { useEffect, useState } from 'react';
+import { useLocalStorageState } from 'battleship-ui/hooks';
 import { ConfigurationPage, GamePage } from 'battleship-ui/pages';
+import { Game } from 'battleship-engine/types';
 
 export const App = () => {
   const [gridConfigId, setGridConfigId] = useState<string>();
-  const [game, setGame] = useState<Game>();
+  const [game, setGame] = useLocalStorageState<Game | undefined>(
+    'battleship-react-app-game',
+    undefined
+  );
 
-  const onStartGame = (game: Game) => {
-    setGridConfigId(game.playerGrid.gridConfigId);
-    setGame(game);
-  };
+  useEffect(() => {
+    console.error(game);
+    if (game) setGridConfigId(game.playerGrid.gridConfigId);
+  }, [game]);
 
   return game ? (
     <GamePage game={game} onSetGame={setGame} />
   ) : (
-    <ConfigurationPage gridConfigId={gridConfigId} onStartGame={onStartGame} />
+    <ConfigurationPage gridConfigId={gridConfigId} onStartGame={setGame} />
   );
 };
 
