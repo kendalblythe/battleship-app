@@ -5,7 +5,7 @@ import { Game } from 'battleship-engine/types';
 
 export const App = () => {
   const [gridConfigId, setGridConfigId] = useState<string>();
-  const [game, setGame] = useLocalStorageState<Game | undefined>(
+  const [game, setGame, isInitialized] = useLocalStorageState<Game | undefined>(
     'battleship-react-app-game',
     undefined
   );
@@ -15,11 +15,13 @@ export const App = () => {
     if (game) setGridConfigId(game.playerGrid.gridConfigId);
   }, [game]);
 
-  return game ? (
-    <GamePage game={game} onSetGame={setGame} />
-  ) : (
-    <ConfigurationPage gridConfigId={gridConfigId} onStartGame={setGame} />
-  );
+  return isInitialized ? (
+    game ? (
+      <GamePage game={game} onSetGame={setGame} />
+    ) : (
+      <ConfigurationPage gridConfigId={gridConfigId} onStartGame={setGame} />
+    )
+  ) : null;
 };
 
 export default App;

@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 
 export const useLocalStorageState = <T>(key: string, fallbackValue: T) => {
+  const [isInitialized, setInitialized] = useState(false);
   const [value, setValue] = useState(fallbackValue);
 
   useEffect(() => {
     const stored = localStorage.getItem(key);
     setValue(stored ? JSON.parse(stored) : fallbackValue);
+    setInitialized(true);
   }, [key, fallbackValue]);
 
   const setValueAndUpdateLocalStorage = (value: T) => {
@@ -17,7 +19,7 @@ export const useLocalStorageState = <T>(key: string, fallbackValue: T) => {
     }
   };
 
-  return [value, setValueAndUpdateLocalStorage] as const;
+  return [value, setValueAndUpdateLocalStorage, isInitialized] as const;
 };
 
 export default useLocalStorageState;
