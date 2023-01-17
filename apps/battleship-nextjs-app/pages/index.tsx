@@ -15,7 +15,7 @@ const GamePage = dynamic(() => import('battleship-ui/pages/GamePage'), {
 
 export default function Home() {
   const [gridConfigId, setGridConfigId] = useState<string>();
-  const [game, setGame, isInitialized] = useLocalStorageState<Game | undefined>(
+  const [game, setGame, isLoaded] = useLocalStorageState<Game | undefined>(
     'battleship-nextjs-app-game',
     undefined
   );
@@ -31,7 +31,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/ship.png" />
       </Head>
-      {isInitialized ? (
+      {isLoaded ? (
         game ? (
           <GamePage game={game} onSetGame={setGame} />
         ) : (
