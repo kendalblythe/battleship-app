@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { useLocalStorageState } from 'battleship-ui/hooks';
+
 import { Game } from 'battleship-engine/types';
+import { useLocalStorageState } from 'battleship-ui/hooks';
 
 // Dynamic import with ssr = false resolves React hydration error.
 // https://stackoverflow.com/questions/66374123/warning-text-content-did-not-match-server-im-out-client-im-in-div

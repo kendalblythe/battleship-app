@@ -1,4 +1,5 @@
 import { Ship } from 'battleship-engine/types';
+
 import { useTranslate } from '../../locales';
 import { getShipLabel } from '../../utils';
 import styles from './PlacedShip.module.scss';

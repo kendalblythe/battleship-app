@@ -1,4 +1,5 @@
 import { Coordinate, Grid } from 'battleship-engine/types';
+
 import { Translate } from '../locales';
 
 /**

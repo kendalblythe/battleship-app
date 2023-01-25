@@ -1,6 +1,6 @@
 import { GridConfig } from '../types';
-import { createEngineError, EngineErrorType } from './error';
 import config from './config.json';
+import { createEngineError, EngineErrorType } from './error';
 
 /**
  * Returns all grid configs.

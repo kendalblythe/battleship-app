@@ -1,8 +1,8 @@
 import { ReactElement, RefObject } from 'react';
-import { clsx } from 'clsx';
+
 import { BombedCoordinate, Grid } from 'battleship-engine/types';
-import { PlacedShip } from './PlacedShip';
-import { TableCell } from './TableCell';
+import { clsx } from 'clsx';
+
 import { useTranslate } from '../../locales';
 import {
   getColumnLabel,
@@ -13,6 +13,8 @@ import {
   getSunkShipIds,
 } from '../../utils';
 import styles from './OceanGrid.module.scss';
+import { PlacedShip } from './PlacedShip';
+import { TableCell } from './TableCell';
 
 export interface OceanGridProps {
   className?: string;

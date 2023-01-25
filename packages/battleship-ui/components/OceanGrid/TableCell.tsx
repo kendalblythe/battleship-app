@@ -1,6 +1,8 @@
 import { KeyboardEvent } from 'react';
-import { clsx } from 'clsx';
+
 import { BombedCoordinate } from 'battleship-engine/types';
+import { clsx } from 'clsx';
+
 import styles from './TableCell.module.scss';
 
 export interface TableCellProps {

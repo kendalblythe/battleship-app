@@ -1,5 +1,8 @@
 import { ReactElement } from 'react';
+
+import { dropPlayerBomb } from 'battleship-engine/api';
 import { Game, Grid } from 'battleship-engine/types';
+
 import { Button } from '../../components/Button';
 import { OceanGrid, GridDisplaySize, getGridWidth } from '../../components/OceanGrid';
 import { PageHeading } from '../../components/PageHeading';
@@ -8,7 +11,6 @@ import { useWindowSize, WindowSize } from '../../hooks/useWindowSize';
 import { useTranslate } from '../../locales';
 import { getShipLabel, getSunkShipIds } from '../../utils';
 import styles from './GamePage.module.scss';
-import { dropPlayerBomb } from 'battleship-engine/api';
 
 export interface GamePageProps {
   game: Game;
