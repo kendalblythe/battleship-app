@@ -12,7 +12,6 @@ export const App = () => {
   );
 
   useEffect(() => {
-    console.error(game);
     if (game) setGridConfigId(game.playerGrid.gridConfigId);
   }, [game]);
 
