@@ -40,9 +40,12 @@ export const OceanGrid = ({
   // initialize ship coordinate/label map
   const shipCoordinateLabelMap = new Map<string | null, string>();
   grid.ships.forEach((ship) => {
-    ship.coordinates.forEach((coordinate) =>
-      shipCoordinateLabelMap.set(getCoordinateLabel(coordinate, t), getShipLabel(ship.id, t))
-    );
+    ship.coordinates.forEach((coordinate) => {
+      // show ship label if not opponent grid or ship sunken
+      if (!isOpponentGrid || sunkShipIdSet.has(ship.id)) {
+        shipCoordinateLabelMap.set(getCoordinateLabel(coordinate, t), getShipLabel(ship.id, t));
+      }
+    });
   });
 
   // initialize bombed coordinate map
