@@ -1,10 +1,7 @@
-import nextTranspileModules from 'next-transpile-modules';
-
-const withTM = nextTranspileModules(['battleship-engine', 'battleship-ui']);
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ['battleship-engine', 'battleship-ui'],
   reactStrictMode: true,
 };
 
-export default withTM(nextConfig);
+export default nextConfig;
