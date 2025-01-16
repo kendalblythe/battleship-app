@@ -4,7 +4,7 @@ import { dropPlayerBomb } from 'battleship-engine/api';
 import { Game, Grid } from 'battleship-engine/types';
 
 import { Button } from '../../components/Button';
-import { OceanGrid, GridDisplaySize, getGridWidth } from '../../components/OceanGrid';
+import { getGridWidth, GridDisplaySize, OceanGrid } from '../../components/OceanGrid';
 import { PageHeading } from '../../components/PageHeading';
 import { Spacer } from '../../components/Spacer';
 import { useWindowSize, WindowSize } from '../../hooks/useWindowSize';

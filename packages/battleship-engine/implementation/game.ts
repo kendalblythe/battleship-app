@@ -1,13 +1,13 @@
 import { Coordinate, Game, Grid } from '../types';
 import { dropArtificialIntelligentBomb } from './ai';
 import { getGridConfig } from './config';
-import { EngineErrorType, createEngineError } from './error';
+import { createEngineError, EngineErrorType } from './error';
 import {
   createGrid,
   dropBomb,
+  isAllShipsSunk,
   validateGridMatchGridConfig,
   validateGridShipCoordinates,
-  isAllShipsSunk,
 } from './grid';
 import { randomBoolean } from './random';
 

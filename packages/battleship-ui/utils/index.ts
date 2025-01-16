@@ -66,5 +66,4 @@ export const getCoordinateLabelXY = (
 export const getSunkShipIds = (grid: Grid): string[] =>
   grid.bombedCoordinates
     .filter((coordinate) => !!coordinate.sunkShip)
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     .map((coordinate) => coordinate.sunkShip!.id);

@@ -4,7 +4,7 @@ import { createGrid, getGridConfigs, startGame } from 'battleship-engine/api';
 import { Game, Grid } from 'battleship-engine/types';
 
 import { Button } from '../../components/Button';
-import { OceanGrid, GridDisplaySize } from '../../components/OceanGrid';
+import { GridDisplaySize, OceanGrid } from '../../components/OceanGrid';
 import { PageHeading } from '../../components/PageHeading';
 import { Select } from '../../components/Select';
 import { Spacer } from '../../components/Spacer';
