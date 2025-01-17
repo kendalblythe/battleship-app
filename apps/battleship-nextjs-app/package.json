@@ -21,8 +21,10 @@
     "@types/node": "22.10.7",
     "@types/react": "19.0.7",
     "@types/react-dom": "19.0.3",
+    "babel-plugin-react-compiler": "^19.0.0-beta-e552027-20250112",
     "eslint-config-custom": "*",
     "eslint-config-next": "15.1.4",
+    "eslint-plugin-react-compiler": "^19.0.0-beta-e552027-20250112",
     "tsconfig": "*"
   }
 }
