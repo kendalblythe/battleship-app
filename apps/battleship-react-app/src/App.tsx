@@ -17,7 +17,7 @@ export const App = () => {
 
   return isLoaded ? (
     game ? (
-      <GamePage game={game} onSetGame={setGame} />
+      <GamePage game={game} onGameChange={setGame} />
     ) : (
       <ConfigurationPage gridConfigId={gridConfigId} onStartGame={setGame} />
     )

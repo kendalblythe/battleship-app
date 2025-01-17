@@ -1,3 +1,5 @@
+import cloneDeep from 'lodash/cloneDeep';
+
 import { Coordinate, Game, Grid } from '../types';
 import { dropArtificialIntelligentBomb } from './ai';
 import { getGridConfig } from './config';
@@ -49,19 +51,21 @@ export const startGame = (playerGrid: Grid): Game => {
 };
 
 /**
- * Drops a player bomb on the opponent grid at the specified coordinate..
+ * Drops a player bomb on the opponent grid at the specified coordinate.
  * @param game Game
  * @param coordinate Coordinate
+ * @returns The updated game
  * @throws {EngineError} [
  *   EngineErrorType.gameOverBombDrop,
  *   EngineErrorType.invalidBombCoordinate,
  * ]
  */
-export const dropPlayerBomb = (game: Game, coordinate: Coordinate): void => {
-  const { playerGrid, opponentGrid } = game;
+export const dropPlayerBomb = (game: Game, coordinate: Coordinate): Game => {
+  const updatedGame = cloneDeep(game);
+  const { playerGrid, opponentGrid } = updatedGame;
 
   // validate game not over
-  if (game.winningPlayerNum) {
+  if (updatedGame.winningPlayerNum) {
     throw createEngineError(EngineErrorType.gameOverBombDrop);
   }
 
@@ -71,7 +75,7 @@ export const dropPlayerBomb = (game: Game, coordinate: Coordinate): void => {
   // determine if game over
   if (isAllShipsSunk(opponentGrid)) {
     // game over - player winner
-    game.winningPlayerNum = playerGrid.playerNum;
+    updatedGame.winningPlayerNum = playerGrid.playerNum;
   } else {
     // game not over - drop opponent bomb
     dropArtificialIntelligentBomb(playerGrid);
@@ -79,7 +83,9 @@ export const dropPlayerBomb = (game: Game, coordinate: Coordinate): void => {
     // determine if game over
     if (isAllShipsSunk(playerGrid)) {
       // game over - opponent winner
-      game.winningPlayerNum = opponentGrid.playerNum;
+      updatedGame.winningPlayerNum = opponentGrid.playerNum;
     }
   }
+
+  return updatedGame;
 };

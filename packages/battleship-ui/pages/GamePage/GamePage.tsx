@@ -14,18 +14,18 @@ import styles from './GamePage.module.scss';
 
 export interface GamePageProps {
   game: Game;
-  onSetGame: (game?: Game) => void;
+  onGameChange: (game?: Game) => void;
 }
 
-export const GamePage = ({ game, onSetGame }: GamePageProps) => {
+export const GamePage = ({ game, onGameChange }: GamePageProps) => {
   const t = useTranslate();
   const windowSize = useWindowSize();
   const { playerGrid, opponentGrid, winningPlayerNum } = game;
   const displaySize = getGridDisplaySize(playerGrid, windowSize);
 
   const onDropBomb = (x: number, y: number): void => {
-    dropPlayerBomb(game, { x, y });
-    onSetGame({ ...game });
+    const updatedGame = dropPlayerBomb(game, { x, y });
+    onGameChange(updatedGame);
   };
 
   const gameOver =
@@ -46,7 +46,7 @@ export const GamePage = ({ game, onSetGame }: GamePageProps) => {
       <header>
         <PageHeading text={gameOver ? t('gamePage.gameOver.title') : t('gamePage.title')} />
         <Spacer />
-        <Button variant="primary" onClick={() => onSetGame()}>
+        <Button variant="primary" onClick={() => onGameChange()}>
           {gameOver ? t('gamePage.startOver.button.label') : t('gamePage.quitGame.button.label')}
         </Button>
       </header>
