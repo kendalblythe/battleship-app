@@ -27,9 +27,6 @@
     ],
     "packages/battleship-*/**/*.{js,ts,jsx,tsx}": [
       "eslint --fix"
-    ],
-    "*.json": [
-      "prettier --write"
     ]
   },
   "packageManager": "yarn@1.22.22"
