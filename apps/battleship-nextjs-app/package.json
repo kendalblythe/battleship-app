@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "battleship-ui": "*",
-    "next": "15.1.4",
+    "next": "15.2.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "sanitize.css": "13.0.0"
@@ -23,7 +23,7 @@
     "@types/react-dom": "19.0.3",
     "babel-plugin-react-compiler": "^19.0.0-beta-e552027-20250112",
     "eslint-config-custom": "*",
-    "eslint-config-next": "15.1.4",
+    "eslint-config-next": "15.2.3",
     "eslint-plugin-react-compiler": "^19.0.0-beta-e552027-20250112",
     "tsconfig": "*"
   }
