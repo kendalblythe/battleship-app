@@ -26,5 +26,8 @@
     "eslint-config-next": "15.2.3",
     "eslint-plugin-react-compiler": "^19.0.0-beta-e552027-20250112",
     "tsconfig": "*"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }
