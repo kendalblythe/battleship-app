@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { createGrid, getGridConfigs, startGame } from 'battleship-engine/api';
 import { Game, Grid } from 'battleship-engine/types';
@@ -6,7 +6,7 @@ import { Game, Grid } from 'battleship-engine/types';
 import { Button } from '../../components/Button';
 import { GridDisplaySize, OceanGrid } from '../../components/OceanGrid';
 import { PageHeading } from '../../components/PageHeading';
-import { Select } from '../../components/Select';
+import { Select, SelectChangeEvent } from '../../components/Select';
 import { Spacer } from '../../components/Spacer';
 import { PlaySVG, ShuffleSVG } from '../../components/svgs';
 import { useWindowSize, WindowSize } from '../../hooks/useWindowSize';
@@ -30,7 +30,11 @@ export const ConfigurationPage = ({
   const [gridConfigId, setGridConfigId] = useState(initialGridConfigId ?? gridConfigs[0].id);
   const [grid, setGrid] = useState(createGrid(gridConfigId));
 
-  useEffect(() => setGrid(createGrid(gridConfigId)), [gridConfigId]);
+  const onGridConfigChange = (event: SelectChangeEvent) => {
+    const { value: gridConfigId } = event;
+    setGridConfigId(gridConfigId);
+    setGrid(createGrid(gridConfigId));
+  };
 
   const gridConfigOptions = gridConfigs.map((gridConfig) => ({
     value: gridConfig.id,
@@ -44,11 +48,7 @@ export const ConfigurationPage = ({
     <div className={styles.configurationPage}>
       <header>
         <PageHeading text={t('configurationPage.title')} />
-        <Select
-          value={gridConfigId}
-          options={gridConfigOptions}
-          onChange={({ value }) => setGridConfigId(value)}
-        />
+        <Select value={gridConfigId} options={gridConfigOptions} onChange={onGridConfigChange} />
         <Spacer />
         <Button className={styles.shuffleButton} onClick={onShuffleButtonClick}>
           {t('configurationPage.shuffleShips.button.label')}

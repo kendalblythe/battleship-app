@@ -12,6 +12,7 @@ export const App = () => {
   );
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (game) setGridConfigId(game.playerGrid.gridConfigId);
   }, [game]);
 
