@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useEffectEvent, useState } from 'react';
 
 import { Game } from 'battleship-engine/types';
 import { useLocalStorageState } from 'battleship-ui/hooks';
@@ -11,10 +11,11 @@ export const App = () => {
     undefined
   );
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+  const onGameChange = useEffectEvent((game: Game | undefined) => {
     if (game) setGridConfigId(game.playerGrid.gridConfigId);
-  }, [game]);
+  });
+
+  useEffect(() => onGameChange(game), [game]);
 
   return isLoaded ? (
     game ? (

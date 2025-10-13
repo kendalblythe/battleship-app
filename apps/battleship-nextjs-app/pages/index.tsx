@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useEffectEvent, useState } from 'react';
 
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
@@ -22,10 +22,11 @@ export default function Home() {
     undefined
   );
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+  const onGameChange = useEffectEvent((game: Game | undefined) => {
     if (game) setGridConfigId(game.playerGrid.gridConfigId);
-  }, [game]);
+  });
+
+  useEffect(() => onGameChange(game), [game]);
 
   return (
     <>
