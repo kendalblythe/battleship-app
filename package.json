@@ -5,20 +5,24 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build --no-daemon",
-    "dev": "turbo run dev --parallel --no-daemon",
-    "dev:nextjs": "turbo run dev --filter=battleship-nextjs-app",
-    "dev:react": "turbo run dev --filter=battleship-react-app",
+    "build": "yarn scss:types && turbo run build --no-daemon",
+    "dev": "concurrently \"yarn scss:types:watch\" \"turbo run dev --parallel --no-daemon\"",
+    "dev:nextjs": "concurrently \"yarn scss:types:watch\" \"turbo run dev --filter=battleship-nextjs-app\"",
+    "dev:react": "concurrently \"yarn scss:types:watch\" \"turbo run dev --filter=battleship-react-app\"",
     "lint": "turbo run lint --no-daemon",
-    "format": "prettier --write \"**/*.{js,ts,tsx,json,md}\""
+    "format": "prettier --write \"**/*.{js,ts,tsx,json,md}\"",
+    "scss:types": "typed-scss-modules packages/battleship-ui --updateStaleOnly --ignore \"**/node_modules/**\"",
+    "scss:types:watch": "yarn scss:types --watch"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "5.2.2",
+    "concurrently": "9.2.1",
     "eslint": "9.37.0",
     "husky": "9.1.7",
     "lint-staged": "16.2.4",
     "prettier": "3.6.2",
-    "@trivago/prettier-plugin-sort-imports": "5.2.2",
     "turbo": "latest",
+    "typed-scss-modules": "8.1.1",
     "typescript": "5.7.3"
   },
   "lint-staged": {

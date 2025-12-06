@@ -3,10 +3,11 @@ import { KeyboardEvent } from 'react';
 import { BombedCoordinate } from 'battleship-engine/types';
 import { clsx } from 'clsx';
 
+import { GridDisplaySize } from './OceanGrid';
 import styles from './TableCell.module.scss';
 
 export interface TableCellProps {
-  displaySize: string;
+  displaySize: GridDisplaySize;
   rowIndex: number;
   columnIndex: number;
   rowLabel: string;

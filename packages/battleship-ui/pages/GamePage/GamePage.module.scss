@@ -1,4 +1,4 @@
-.gamePage {
+.game-page {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -7,7 +7,7 @@
   background-color: var(--battleship-page-bg);
 }
 
-.gamePage > header {
+.game-page > header {
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -17,17 +17,17 @@
   border-block-end: 1px solid var(--battleship-page-bd);
 }
 
-.gamePage > header > * {
+.game-page > header > * {
   margin-inline-start: 0.5rem;
 }
 
-.gamePage > main {
+.game-page > main {
   display: block;
   text-align: center;
   overflow: auto;
 }
 
-.gamePage > main > .verticalLayout {
+.game-page > main > .vertical-layout {
   position: relative;
   display: inline-block;
   margin-inline: 1rem;
@@ -37,21 +37,21 @@
 }
 
 @media screen and (max-width: 420px) {
-  .gamePage > main > .verticalLayout {
+  .game-page > main > .vertical-layout {
     margin-inline: 0;
   }
 }
 
-.gamePage > main > .verticalLayout > * {
+.game-page > main > .vertical-layout > * {
   display: block;
 }
 
-.gamePage > main > .verticalLayout > .sunkShips {
+.game-page > main > .vertical-layout > .sunk-ships {
   font-style: italic;
   margin-top: 0.25rem;
 }
 
-.gamePage > main h3 {
+.game-page > main h3 {
   margin-top: 0;
   margin-bottom: 0.5rem;
 }

@@ -1,4 +1,4 @@
-.configurationPage {
+.configuration-page {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -7,7 +7,7 @@
   background-color: var(--battleship-page-bg);
 }
 
-.configurationPage > header {
+.configuration-page > header {
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -17,18 +17,18 @@
   border-block-end: 1px solid var(--battleship-page-bd);
 }
 
-.configurationPage > header > * {
+.configuration-page > header > * {
   margin-inline-start: 0.5rem;
 }
 
-.configurationPage > main {
+.configuration-page > main {
   display: flex;
   flex-grow: 1;
   overflow: auto;
   margin: 0 0.5rem;
 }
 
-.configurationPage > main > .oceanGrid {
+.configuration-page > main > .ocean-grid {
   margin: 0 auto;
 }
 
@@ -56,6 +56,6 @@
   }
 }
 
-.configurationPage svg {
+.configuration-page svg {
   fill: var(--battleship-icon-color);
 }

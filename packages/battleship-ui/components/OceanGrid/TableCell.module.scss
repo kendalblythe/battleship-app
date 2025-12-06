@@ -1,35 +1,35 @@
-.tableCell {
+.table-cell {
   position: relative;
   display: table-cell;
   vertical-align: middle;
 }
 
-.tableCell.headerCell {
+.table-cell.header-cell {
   text-align: center;
   background-color: var(--battleship-table-header-cell-bg);
 }
 
-.tableCell.headerCell > span {
+.table-cell.header-cell > span {
   font-weight: bold;
   color: var(--battleship-table-header-cell-fg);
 }
 
-.tableCell.headerCell.small > span {
+.table-cell.header-cell.small > span {
   font-size: 0.875rem;
 }
 
-.tableCell.headerCell.medium > span {
+.table-cell.header-cell.medium > span {
   font-size: 1rem;
 }
 
-.tableCell.headerCell.large > span {
+.table-cell.header-cell.large > span {
   font-size: 1.125rem;
 }
 
-.tableCell .hitForwardSlash,
-.tableCell .missForwardSlash,
-.tableCell .hitBackslash,
-.tableCell .missBackslash {
+.table-cell .hit-forward-slash,
+.table-cell .miss-forward-slash,
+.table-cell .hit-backslash,
+.table-cell .miss-backslash {
   position: absolute;
   top: 0.5rem;
   bottom: 0.5rem;
@@ -38,7 +38,7 @@
   z-index: 2;
 }
 
-.tableCell .hitForwardSlash {
+.table-cell .hit-forward-slash {
   background: linear-gradient(
     135deg,
     transparent calc(50% - 1px),
@@ -47,7 +47,7 @@
   );
 }
 
-.tableCell .hitBackslash {
+.table-cell .hit-backslash {
   background: linear-gradient(
     45deg,
     transparent calc(50% - 1px),
@@ -56,7 +56,7 @@
   );
 }
 
-.tableCell .missForwardSlash {
+.table-cell .miss-forward-slash {
   background: linear-gradient(
     135deg,
     transparent calc(50% - 1px),
@@ -65,7 +65,7 @@
   );
 }
 
-.tableCell .missBackslash {
+.table-cell .miss-backslash {
   background: linear-gradient(
     45deg,
     transparent calc(50% - 1px),
@@ -74,7 +74,7 @@
   );
 }
 
-.tableCell button {
+.table-cell button {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -89,8 +89,8 @@
   cursor: pointer;
 }
 
-.tableCell button:hover,
-.tableCell button:focus,
-.tableCell button:active {
+.table-cell button:hover,
+.table-cell button:focus,
+.table-cell button:active {
   background-color: var(--battleship-table-active-cell-bg);
 }
