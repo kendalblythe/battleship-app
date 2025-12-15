@@ -1,6 +1,6 @@
-@import 'mixins';
-@import 'svgs';
-@import 'variables';
+@use 'mixins' as *;
+@use 'svgs' as *;
+@use 'variables' as *;
 
 // light theme
 

@@ -18,7 +18,6 @@
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "eslint-config-custom": "*",
-    "sass": "1.56.1",
     "tsconfig": "*"
   }
 }

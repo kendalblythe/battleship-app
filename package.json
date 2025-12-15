@@ -15,14 +15,15 @@
     "scss:types:watch": "yarn scss:types --watch"
   },
   "devDependencies": {
+    "@thelabnyc/typed-scss-modules": "8.2.4",
     "@trivago/prettier-plugin-sort-imports": "5.2.2",
     "concurrently": "9.2.1",
-    "eslint": "9.37.0",
+    "eslint": "9.39.2",
     "husky": "9.1.7",
     "lint-staged": "16.2.4",
     "prettier": "3.6.2",
+    "sass": "1.96.0",
     "turbo": "latest",
-    "typed-scss-modules": "8.1.1",
     "typescript": "5.7.3"
   },
   "lint-staged": {
