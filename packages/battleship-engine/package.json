@@ -6,6 +6,9 @@
   "scripts": {
     "lint": "TIMING=1 eslint \"**/*.ts*\""
   },
+  "dependencies": {
+    "lodash": "4.17.23"
+  },
   "devDependencies": {
     "eslint-config-custom": "*",
     "tsconfig": "*"
