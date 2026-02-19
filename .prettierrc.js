@@ -10,7 +10,7 @@ module.exports = {
   bracketSpacing: true,
   arrowParens: 'always',
   proseWrap: 'always',
-  importOrder: ['^react(.*)$', '^next(.*)$', '^sanitize(.*)$', '<THIRD_PARTY_MODULES>', '^[./]'],
+  importOrder: ['^react(.*)$', '^sanitize(.*)$', '<THIRD_PARTY_MODULES>', '^[./]'],
   importOrderSeparation: true,
   importOrderCaseInsensitive: true,
 };

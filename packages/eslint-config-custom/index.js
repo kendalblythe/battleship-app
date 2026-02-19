@@ -2,7 +2,6 @@ module.exports = {
   env: {
     node: true,
   },
-  ignorePatterns: ['.next/', 'next-env.d.ts'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     sourceType: 'module',

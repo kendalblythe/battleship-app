@@ -8,7 +8,6 @@ packages for implementing the Battleship web application.
 
 ### Apps
 
-- battleship-nextjs-app
 - battleship-react-app
 
 ### Packages
@@ -28,7 +27,6 @@ You can play a game of Battleship here.
 - <a href="https://react.dev/learn/react-compiler">React Compiler</a>
 - <a href="https://www.typescriptlang.org/">TypeScript</a>
 - <a href="https://www.javascript.com/">JavaScript</a>
-- <a href="https://nextjs.org/">Next.js</a>
 - <a href="https://vitejs.dev/">Vite</a>
 - <a href="https://vercel.com/">Vercel</a>
 - <a href="https://sass-lang.com/">SASS</a>
