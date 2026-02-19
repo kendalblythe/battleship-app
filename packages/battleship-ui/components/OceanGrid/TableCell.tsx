@@ -55,16 +55,16 @@ export const TableCell = ({
     };
 
     const focusPreviousButton = (buttons: Array<HTMLButtonElement>): void => {
-      let index = getButtonArrayIndex(buttons);
+      const index = getButtonArrayIndex(buttons);
       if (index > 0) {
-        focusButton(buttons[--index]);
+        focusButton(buttons[index - 1]);
       }
     };
 
     const focusNextButton = (buttons: Array<HTMLButtonElement>): void => {
-      let index = getButtonArrayIndex(buttons);
+      const index = getButtonArrayIndex(buttons);
       if (index < buttons.length - 1) {
-        focusButton(buttons[++index]);
+        focusButton(buttons[index + 1]);
       }
     };
 
