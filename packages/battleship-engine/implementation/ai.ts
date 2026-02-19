@@ -9,7 +9,10 @@ import {
 import { randomBoolean, randomInt } from './random';
 
 /**
- * Drops a bomb on the grid using artificial intelligence to determine the coordinate to attack.
+ * Drops an AI-controlled bomb with adaptive targeting:
+ * 1. If a ship is partially hit, target adjacent cells
+ * 2. Otherwise, prefer non-adjacent cells to avoid hitting clustered ships
+ * 3. Fall back to random available coordinate if no preference available
  * @param grid Grid
  * @returns Bombed coordinate
  * @throws {EngineError} [

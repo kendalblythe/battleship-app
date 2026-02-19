@@ -67,3 +67,8 @@ export const getSunkShipIds = (grid: Grid): string[] =>
   grid.bombedCoordinates
     .filter((coordinate) => !!coordinate.sunkShip)
     .map((coordinate) => coordinate.sunkShip!.id);
+
+/**
+ * Returns true if the grid is small (6x6 or smaller).
+ */
+export const isSmallGrid = (grid: Grid): boolean => grid.size.x <= 6;

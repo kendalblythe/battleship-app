@@ -9,7 +9,7 @@ import { PageHeading } from '../../components/PageHeading';
 import { Spacer } from '../../components/Spacer';
 import { useWindowSize, WindowSize } from '../../hooks/useWindowSize';
 import { useTranslate } from '../../locales';
-import { getShipLabel, getSunkShipIds } from '../../utils';
+import { getShipLabel, getSunkShipIds, isSmallGrid } from '../../utils';
 import styles from './GamePage.module.scss';
 
 export interface GamePageProps {
@@ -98,12 +98,11 @@ export default GamePage;
 const getGridDisplaySize = (grid: Grid, windowSize: WindowSize): GridDisplaySize => {
   const { width, height } = windowSize;
   const minWindowSizeDimension = Math.min(width, height);
-  const isSmallGrid = grid.size.x <= 6;
   if (minWindowSizeDimension <= 512) {
     return 'small';
   } else if (minWindowSizeDimension <= 800) {
-    return isSmallGrid ? 'medium' : 'small';
+    return isSmallGrid(grid) ? 'medium' : 'small';
   } else {
-    return isSmallGrid ? 'large' : 'small';
+    return isSmallGrid(grid) ? 'large' : 'small';
   }
 };

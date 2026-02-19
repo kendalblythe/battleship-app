@@ -11,7 +11,7 @@ import { Spacer } from '../../components/Spacer';
 import { PlaySVG, ShuffleSVG } from '../../components/svgs';
 import { useWindowSize, WindowSize } from '../../hooks/useWindowSize';
 import { useTranslate } from '../../locales';
-import { getGridConfigLabel } from '../../utils';
+import { getGridConfigLabel, isSmallGrid } from '../../utils';
 import styles from './ConfigurationPage.module.scss';
 
 export interface ConfigurationPageProps {
@@ -89,11 +89,10 @@ export default ConfigurationPage;
 const getGridDisplaySize = (grid: Grid, windowSize: WindowSize): GridDisplaySize => {
   const { width, height } = windowSize;
   const minWindowSizeDimension = Math.min(width, height);
-  const isSmallGrid = grid.size.x <= 6;
   if (minWindowSizeDimension <= 512) {
-    return isSmallGrid ? 'medium' : 'small';
+    return isSmallGrid(grid) ? 'medium' : 'small';
   } else if (minWindowSizeDimension <= 768) {
-    return isSmallGrid ? 'large' : 'medium';
+    return isSmallGrid(grid) ? 'large' : 'medium';
   } else {
     return 'large';
   }

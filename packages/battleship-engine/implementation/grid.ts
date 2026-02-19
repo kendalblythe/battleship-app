@@ -5,6 +5,12 @@ import { createEngineError, EngineErrorType } from './error';
 import { randomBoolean, randomInt, shuffle } from './random';
 
 /**
+ * Probability denominator for allowing adjacent ships.
+ * Currently 1 in 5 grids (20%) will allow 1 adjacent ship during placement.
+ */
+const ADJACENT_SHIP_PROBABILITY_DENOMINATOR = 5;
+
+/**
  * Creates a grid with randomly placed ships for the grid config.
  * @param gridConfigId Grid config id
  * @returns Grid
@@ -44,7 +50,7 @@ export const randomlyPlaceShips = (grid: Grid): void => {
   const orderedShips = [...largestShips, ...otherShips, ...oneLengthShips];
 
   // place each ship
-  const allowAdjacentShip = randomInt(5) === 0; // 1/5 of grids allow 1 adjacent ship
+  const allowAdjacentShip = randomInt(ADJACENT_SHIP_PROBABILITY_DENOMINATOR) === 0;
   let hasAdjacentShip = false;
   for (const ship of orderedShips) {
     // loop until ship start/end coordinates set

@@ -9,7 +9,7 @@ export const useWindowSize = (): WindowSize => {
   const getWindowSize = (): WindowSize => {
     return typeof window === 'undefined' // window available client-side only
       ? { width: 0, height: 0 }
-      : { width: window.innerWidth, height: window.innerWidth };
+      : { width: window.innerWidth, height: window.innerHeight };
   };
 
   const [windowSize, setWindowSize] = useState(getWindowSize());

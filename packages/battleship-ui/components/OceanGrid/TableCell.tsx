@@ -33,7 +33,7 @@ export const TableCell = ({
   const cellClassNames = clsx(styles.tableCell, styles[displaySize]);
   const headerClassNames = clsx(cellClassNames, styles.headerCell);
 
-  const onKeyDown = (event: KeyboardEvent): void => {
+  const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>): void => {
     const getRowButtons = (): Array<HTMLButtonElement> =>
       Array.from(document.querySelectorAll(`button[data-row="${rowIndex}"]`));
 
