@@ -5,9 +5,9 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn scss:types && turbo run build --no-daemon",
-    "dev": "concurrently \"yarn scss:types:watch\" \"turbo run dev --parallel --no-daemon\"",
-    "lint": "turbo run lint --no-daemon",
+    "build": "yarn scss:types && turbo run build",
+    "dev": "concurrently \"yarn scss:types:watch\" \"turbo run dev --parallel\"",
+    "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{js,ts,tsx,json,md}\"",
     "scss:types": "typed-scss-modules packages/battleship-ui --updateStaleOnly --ignore \"**/node_modules/**\"",
     "scss:types:watch": "yarn scss:types --watch"
@@ -23,6 +23,10 @@
     "sass": "1.96.0",
     "turbo": "latest",
     "typescript": "5.9.3"
+  },
+  "resolutions": {
+    "rollup": "4.59.0",
+    "tar": "7.5.10"
   },
   "lint-staged": {
     "apps/**/*.{js,ts,jsx,tsx}": [
