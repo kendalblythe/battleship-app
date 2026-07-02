@@ -16,13 +16,16 @@
     "sanitize.css": "13.0.0"
   },
   "devDependencies": {
+    "@babel/core": "7.29.7",
+    "@rolldown/plugin-babel": "0.2.3",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "5.0.4",
+    "@vitejs/plugin-react": "6.0.3",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint-config-custom": "*",
+    "rolldown": "1.1.4",
     "tsconfig": "*",
-    "vite": "6.4.2"
+    "vite": "8.1.2"
   },
   "engines": {
     "node": "24.x"
