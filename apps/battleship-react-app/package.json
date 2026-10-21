@@ -25,7 +25,7 @@
     "eslint-config-custom": "*",
     "rolldown": "1.1.4",
     "tsconfig": "*",
-    "vite": "8.1.2"
+    "vite": "8.1.6"
   },
   "engines": {
     "node": "24.x"
