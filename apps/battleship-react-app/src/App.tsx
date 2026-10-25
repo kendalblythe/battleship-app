@@ -1,4 +1,4 @@
-import { useEffect, useEffectEvent, useState } from 'react';
+import { useState } from 'react';
 
 import { Game } from 'battleship-engine/types';
 import { useLocalStorageState } from 'battleship-ui/hooks';
@@ -11,17 +11,21 @@ export const App = () => {
     undefined
   );
 
-  const onGameChange = useEffectEvent((game: Game | undefined) => {
-    if (game) setGridConfigId(game.playerGrid.gridConfigId);
-  });
+  const onGameChange = (nextGame?: Game) => {
+    if (nextGame) {
+      setGridConfigId(nextGame.playerGrid.gridConfigId);
+    } else if (game) {
+      setGridConfigId(game.playerGrid.gridConfigId);
+    }
 
-  useEffect(() => onGameChange(game), [game]);
+    setGame(nextGame);
+  };
 
   return isLoaded ? (
     game ? (
-      <GamePage game={game} onGameChange={setGame} />
+      <GamePage game={game} onGameChange={onGameChange} />
     ) : (
-      <ConfigurationPage gridConfigId={gridConfigId} onStartGame={setGame} />
+      <ConfigurationPage gridConfigId={gridConfigId} onStartGame={onGameChange} />
     )
   ) : null;
 };

@@ -8,7 +8,7 @@ import { getGridWidth, GridDisplaySize, OceanGrid } from '../../components/Ocean
 import { PageHeading } from '../../components/PageHeading';
 import { Spacer } from '../../components/Spacer';
 import { useWindowSize, WindowSize } from '../../hooks/useWindowSize';
-import { useTranslate } from '../../locales';
+import { getTranslate } from '../../locales';
 import { getShipLabel, getSunkShipIds, isSmallGrid } from '../../utils';
 import styles from './GamePage.module.scss';
 
@@ -18,7 +18,7 @@ export interface GamePageProps {
 }
 
 export const GamePage = ({ game, onGameChange }: GamePageProps) => {
-  const t = useTranslate();
+  const t = getTranslate();
   const windowSize = useWindowSize();
   const { playerGrid, opponentGrid, winningPlayerNum } = game;
   const displaySize = getGridDisplaySize(playerGrid, windowSize);

@@ -1,15 +1,3 @@
-import { FlatCompat } from '@eslint/eslintrc';
-import pluginJs from '@eslint/js';
+import config from 'eslint-config-custom';
 
-const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname,
-  recommendedConfig: pluginJs.configs.recommended,
-});
-
-const eslintConfig = [
-  ...compat.config({
-    extends: ['custom'],
-  }),
-];
-
-export default eslintConfig;
+export default config;

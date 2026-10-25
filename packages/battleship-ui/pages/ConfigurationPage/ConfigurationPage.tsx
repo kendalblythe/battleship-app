@@ -10,7 +10,7 @@ import { Select, SelectChangeEvent } from '../../components/Select';
 import { Spacer } from '../../components/Spacer';
 import { PlaySVG, ShuffleSVG } from '../../components/svgs';
 import { useWindowSize, WindowSize } from '../../hooks/useWindowSize';
-import { useTranslate } from '../../locales';
+import { getTranslate } from '../../locales';
 import { getGridConfigLabel, isSmallGrid } from '../../utils';
 import styles from './ConfigurationPage.module.scss';
 
@@ -23,12 +23,12 @@ export const ConfigurationPage = ({
   gridConfigId: initialGridConfigId,
   onStartGame,
 }: ConfigurationPageProps) => {
-  const t = useTranslate();
+  const t = getTranslate();
   const windowSize = useWindowSize();
 
-  const [gridConfigs] = useState(getGridConfigs());
+  const [gridConfigs] = useState(() => getGridConfigs());
   const [gridConfigId, setGridConfigId] = useState(initialGridConfigId ?? gridConfigs[0].id);
-  const [grid, setGrid] = useState(createGrid(gridConfigId));
+  const [grid, setGrid] = useState(() => createGrid(gridConfigId));
 
   const onGridConfigChange = (event: SelectChangeEvent) => {
     const { value: gridConfigId } = event;

@@ -3,7 +3,7 @@ import { ReactElement, RefObject } from 'react';
 import { BombedCoordinate, Grid } from 'battleship-engine/types';
 import { clsx } from 'clsx';
 
-import { useTranslate } from '../../locales';
+import { getTranslate } from '../../locales';
 import {
   getColumnLabel,
   getCoordinateLabel,
@@ -33,7 +33,7 @@ export const OceanGrid = ({
   displaySize = 'medium',
   onDropBomb,
 }: OceanGridProps) => {
-  const t = useTranslate();
+  const t = getTranslate();
   const sunkShipIdSet = new Set(getSunkShipIds(grid));
   const cellSize = getCellSize(displaySize);
 
@@ -94,8 +94,8 @@ export const OceanGrid = ({
       </div>
       {grid.ships
         .filter((ship) => !isOpponentGrid || sunkShipIdSet.has(ship.id))
-        .map((ship, idx) => (
-          <PlacedShip key={idx} ship={ship} cellSize={cellSize} />
+        .map((ship) => (
+          <PlacedShip key={ship.id} ship={ship} cellSize={cellSize} />
         ))}
     </div>
   );

@@ -8,7 +8,8 @@
     "build": "yarn scss:types && turbo run build",
     "dev": "concurrently --raw \"yarn scss:types:watch\" \"turbo run dev\"",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{js,ts,tsx,json,md}\"",
+    "format": "prettier --write \"**/*.{js,mjs,ts,tsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,mjs,ts,tsx,json,md}\"",
     "scss:types": "typed-scss-modules packages/battleship-ui --updateStaleOnly --ignore \"**/node_modules/**\"",
     "scss:types:watch": "yarn scss:types --watch"
   },
@@ -16,7 +17,7 @@
     "@thelabnyc/typed-scss-modules": "8.2.4",
     "@trivago/prettier-plugin-sort-imports": "6.0.2",
     "concurrently": "10.0.6",
-    "eslint": "9.39.2",
+    "eslint": "10.13.0",
     "husky": "9.1.7",
     "lint-staged": "16.2.4",
     "prettier": "3.6.2",

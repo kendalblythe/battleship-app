@@ -3,10 +3,10 @@ import defaultLocaleMessages from './en.json';
 export type Translate = (key: string) => string;
 
 /**
- * React hook that returns the getLocalizedText function.
+ * Returns a function that retrieves localized text.
  * @returns The getLocalizedText function
  */
-export const useTranslate = (): Translate => (key: string) => getLocalizedText(key);
+export const getTranslate = (): Translate => (key: string) => getLocalizedText(key);
 
 /**
  * Returns localized text for the message key.

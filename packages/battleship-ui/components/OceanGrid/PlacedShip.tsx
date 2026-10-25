@@ -1,6 +1,6 @@
 import { Ship } from 'battleship-engine/types';
 
-import { useTranslate } from '../../locales';
+import { getTranslate } from '../../locales';
 import { getShipLabel } from '../../utils';
 import styles from './PlacedShip.module.scss';
 
@@ -10,7 +10,7 @@ export interface PlacedShipProps {
 }
 
 export const PlacedShip = ({ ship, cellSize }: PlacedShipProps) => {
-  const t = useTranslate();
+  const t = getTranslate();
 
   if (!ship.coordinates) return null;
 
